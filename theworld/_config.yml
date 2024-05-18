@@ -102,3 +102,7 @@ theme: butterfly #landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+aplayer:
+  meting: true
+  asset_inject: false
