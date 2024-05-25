@@ -101,4 +101,9 @@ theme: butterfly #landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: git@github.com:bjnmc1123/the_world.git
+  branch: main
+aplayer:
+  meting: true
+  asset_inject: false
