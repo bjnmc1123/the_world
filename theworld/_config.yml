@@ -104,6 +104,12 @@ deploy:
   type: 'git'
   repo: git@github.com:bjnmc1123/the_world.git
   branch: main
+
+deploy:
+  type: 'git'
+  repo: git@gitee.com:bjnmc_114/the_world.git
+  branch: master
+
 aplayer:
   meting: true
   asset_inject: false
