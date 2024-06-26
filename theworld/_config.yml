@@ -107,7 +107,7 @@ deploy:
 
 deploy:
   type: 'git'
-  repo: git@gitee.com:bjnmc_114/the_world.git
+  repo: git@gitee.com:bjnmc_1123/the_world.git
   branch: master
 
 aplayer:
