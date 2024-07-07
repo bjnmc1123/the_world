@@ -13,14 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://bjnmc1123.github.io/the_world/
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
-
-url: https://the-world-9ksgfdpm8-bjnmcs-projects.vercel.app/
+url: 
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
