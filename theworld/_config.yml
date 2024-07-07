@@ -139,6 +139,7 @@ cinema: # 追剧设置
   quote: '生命不息，追剧不止！'
   show: 1
   lazyload: true
+  srcValue: url(https://s2.loli.net/2024/06/08/OijZpyUguea7N1q.jpg)
   loading:
   metaColor:
   color:
