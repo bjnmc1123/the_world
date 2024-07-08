@@ -9,31 +9,31 @@ cover: https://s2.loli.net/2024/06/08/IWkHCcVQRfBmo45.jpg
 ### Create a new post
 
 ``` bash
-$ hexo new "My New Post"
+$  new "My New Post"
 ```
 
-More info: [Writing](https://hexo.io/docs/writing.html)
+More info: Writing
 
 ### Run server
 
 ``` bash
-$ hexo server
+$  server
 ```
 
-More info: [Server](https://hexo.io/docs/server.html)
+More info: 
 
 ### Generate static files
 
 ``` bash
-$ hexo generate
+$  generate
 ```
 
-More info: [Generating](https://hexo.io/docs/generating.html)
+More info: Generating
 
 ### Deploy to remote sites
 
 ``` bash
-$ hexo deploy
+$  deploy
 ```
 
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+More info: Deployment
