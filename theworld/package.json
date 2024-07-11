@@ -7,7 +7,7 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server" ,
-    "linkstart": "hexo clean && hexo generate && hexo deploy && hexo server "
+    "linkstart": "hexo clean && hexo generate && hexo deploy && hexo server"
 
 
   },
