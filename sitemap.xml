@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://example.com/2024/07/09/bobo-novel/%E8%BF%99%E4%B8%AA%E7%9B%B8%E6%9C%BA%E7%89%A9%E8%B6%85%E6%89%80%E5%80%BC/</loc>
+    
+    <lastmod>2024-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/2024/07/09/bobo-novel/%E9%82%80%E8%AF%B7/</loc>
+    
+    <lastmod>2024-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/2024/07/09/bobo-novel/%E6%8A%A5%E9%81%93%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</loc>
+    
+    <lastmod>2024-07-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/2024/06/27/hello-world/</loc>
+    
+    <lastmod>2024-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/2024/07/09/bobo-novel/%E6%B3%A2%E6%B3%A2%E7%9A%84%E9%98%85%E8%AF%BB%E9%A1%BB%E7%9F%A5/</loc>
+    
+    <lastmod>2024-07-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://example.com/</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://example.com/tags/%E6%9E%97%E7%BC%BA%E4%B9%8B%E8%A1%8C/</loc>
+    <lastmod>2024-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+</urlset>
