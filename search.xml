@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/06/27/hello-world/</url>
-    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
-
-]]></content>
-  </entry>
-  <entry>
     <title>2.报道的第一天</title>
     <url>/2024/07/09/bobo-novel/%E6%8A%A5%E9%81%93%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试. 提示：千恋万花(∠・ω< )⌒★" data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -49,6 +42,13 @@
 <p>   6.所有读者，自动默认为同意此须知</p>
 <p>   7.请勿将此小说用来作为任何盈利手段</p>
 <p>   <font color=blue>违反条例者，将</font><font color=red>终身</font><font color=blue>纳入本小说的黑名单。</font><br>   希望大家遵守好规则，这会使你有一个良好的阅读时光。<br>   （本条例将于读者各自的下一次阅读时间开始，各自生效）<br>  </font><br>  <font size=2>欢迎各位读者对本条例提供修改意见</font><br></font></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/06/27/hello-world/</url>
+    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
+
 ]]></content>
   </entry>
   <entry>
