@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/06/27/hello-world/</url>
-    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
-
-]]></content>
-  </entry>
-  <entry>
     <title>2.报道的第一天</title>
     <url>/2024/07/09/bobo-novel/%E6%8A%A5%E9%81%93%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试. 提示：千恋万花(∠・ω< )⌒★" data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -100,20 +93,25 @@
   <entry>
     <title>学习资料</title>
     <url>/2024/10/12/pages/learning/</url>
-    <content><![CDATA[<font face="kaiti">
- <h1 style="color: red; font-size: 60px; font-weight: 400;">五班全科资料库！</h1>
+    <content><![CDATA[ <h1 style="color: red; font-size: 60px; font-weight: 400;">五班全科资料库！</h1>
   <font style="color: black; font-size: 50px; font-weight: 400;">
    <a href="/learningsourse/Chinese.zip">点我获取语文部分</a><br>
-   ---
+---
    <a href="/learningsourse/Maths.zip">点我获取数学部分</a><br>
-   ---
+---
    <a href="/learningsourse/English.zip">点我获取英语部分</a><br>
-   ---
+---
    <a href="/learningsourse/Physics.zip">点我获取物理部分</a><br>
-   ---
-   <a href="/learningsourse/Chemistry.zip">点我获取化学部分</a>
+---
+   <a href="/learningsourse/Chemistry.zip">点我获取化学部分</a><br>
    <a href="/learningsourse/Biology.zip">点我获取生物部分</a>
-   </font>
-</font>]]></content>
+   </font>]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/06/27/hello-world/</url>
+    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
+
+]]></content>
   </entry>
 </search>
