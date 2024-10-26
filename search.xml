@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/06/27/hello-world/</url>
-    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
-
-]]></content>
-  </entry>
-  <entry>
     <title>2.报道的第一天</title>
     <url>/2024/07/09/bobo-novel/%E6%8A%A5%E9%81%93%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试. 提示：千恋万花(∠・ω< )⌒★" data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -29,6 +22,13 @@
       <tags>
         <tag>林缺之行</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/06/27/hello-world/</url>
+    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
+
+]]></content>
   </entry>
   <entry>
     <title>波波的阅读须知</title>
