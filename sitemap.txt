@@ -1,5 +1,5 @@
-https://example.com/c5pictures/index.html
-https://example.com/c5pictures/sixthsportmeeting.html
+https://example.com/c5pictures/Gallery.html
+https://example.com/c5pictures/sports.html
 https://example.com/2024/10/12/pages/learning/
 https://example.com/manifest.json
 https://example.com/link/index.html
