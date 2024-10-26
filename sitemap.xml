@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://example.com/c5pictures/index.html</loc>
+    <loc>https://example.com/2024/10/12/pages/learning/</loc>
     
-    <lastmod>2024-10-20</lastmod>
+    <lastmod>2024-10-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://example.com/2024/10/12/pages/learning/</loc>
+    <loc>https://example.com/c5pictures/index.html</loc>
     
-    <lastmod>2024-10-20</lastmod>
+    <lastmod>2024-10-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -85,7 +85,7 @@
 
   <url>
     <loc>https://example.com/</loc>
-    <lastmod>2024-10-20</lastmod>
+    <lastmod>2024-10-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,7 +93,7 @@
   
   <url>
     <loc>https://example.com/tags/%E6%9E%97%E7%BC%BA%E4%B9%8B%E8%A1%8C/</loc>
-    <lastmod>2024-10-20</lastmod>
+    <lastmod>2024-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
