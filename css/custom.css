@@ -432,7 +432,7 @@ div#category {
   border-radius: 10px;
 }
 
-/* 侧边栏个人信息卡片动态渐变色 */
+/* 侧边栏班级信息卡片动态渐变色 */
 #aside-content > .card-widget.card-info {
   background: linear-gradient(
     -45deg,
