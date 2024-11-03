@@ -143,4 +143,11 @@
   
 
   
+  <url>
+    <loc>https://example.com/categories/%E6%96%87%E7%AB%A0/</loc>
+    <lastmod>2024-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 </urlset>
