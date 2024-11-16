@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/06/27/hello-world/</url>
+    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
+
+]]></content>
+  </entry>
+  <entry>
     <title>2.报道的第一天</title>
     <url>/2024/07/09/bobo-novel/%E6%8A%A5%E9%81%93%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试. 提示：千恋万花(∠・ω< )⌒★" data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -25,34 +32,6 @@
       <tags>
         <tag>林缺之行</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/06/27/hello-world/</url>
-    <content><![CDATA[<h1 color: black >  欢迎！！</h1>
-
-]]></content>
-  </entry>
-  <entry>
-    <title>波波的阅读须知</title>
-    <url>/2024/07/09/bobo-novel/%E6%B3%A2%E6%B3%A2%E7%9A%84%E9%98%85%E8%AF%BB%E9%A1%BB%E7%9F%A5/</url>
-    <content><![CDATA[<font face="kaiti">
- <h1 style="color: red;">读者须知(有删改)</h1>
- <font style="color: black; font-size: 21px; font-weight: 450;">
-    
-<blockquote>
-<p>作者：波波<br>编辑：三明治</p>
-</blockquote>
-<p>   亲爱的读者，你好，感谢你对本作品的喜爱与赞美。但是，仍旧有一些条例需要遵守。</p>
-<p>   1.本小说为免费阅读的作品，本人不会以任何形式私信你们来赚取费用</p>
-<p>   2.本小说更新时间不固定，但是一旦更新，就不只一篇</p>
-<p>   3.本小说禁止中国港、澳、台和已满18周岁者阅读</p>
-<p>   4.请勿向不知道此小说存在的人透露内容</p>
-<p>   5.如若被抓包，统一报备抓包者姓名（编辑觉得在网上被抓就要全部趋势了罢）</p>
-<p>   6.所有读者，自动默认为同意此须知</p>
-<p>   7.请勿将此小说用来作为任何盈利手段</p>
-<p>   <font color=blue>违反条例者，将</font><font color=red>终身</font><font color=blue>纳入本小说的黑名单。</font><br>   希望大家遵守好规则，这会使你有一个良好的阅读时光。<br>   （本条例将于读者各自的下一次阅读时间开始，各自生效）<br>  </font><br>  <font size=2>欢迎各位读者对本条例提供修改意见</font><br></font></p>
-]]></content>
   </entry>
   <entry>
     <title>4.这个相机物超所值</title>
@@ -81,6 +60,42 @@
       </tags>
   </entry>
   <entry>
+    <title>波波的阅读须知</title>
+    <url>/2024/07/09/bobo-novel/%E6%B3%A2%E6%B3%A2%E7%9A%84%E9%98%85%E8%AF%BB%E9%A1%BB%E7%9F%A5/</url>
+    <content><![CDATA[<font face="kaiti">
+ <h1 style="color: red;">读者须知(有删改)</h1>
+ <font style="color: black; font-size: 21px; font-weight: 450;">
+    
+<blockquote>
+<p>作者：波波<br>编辑：三明治</p>
+</blockquote>
+<p>   亲爱的读者，你好，感谢你对本作品的喜爱与赞美。但是，仍旧有一些条例需要遵守。</p>
+<p>   1.本小说为免费阅读的作品，本人不会以任何形式私信你们来赚取费用</p>
+<p>   2.本小说更新时间不固定，但是一旦更新，就不只一篇</p>
+<p>   3.本小说禁止中国港、澳、台和已满18周岁者阅读</p>
+<p>   4.请勿向不知道此小说存在的人透露内容</p>
+<p>   5.如若被抓包，统一报备抓包者姓名（编辑觉得在网上被抓就要全部趋势了罢）</p>
+<p>   6.所有读者，自动默认为同意此须知</p>
+<p>   7.请勿将此小说用来作为任何盈利手段</p>
+<p>   <font color=blue>违反条例者，将</font><font color=red>终身</font><font color=blue>纳入本小说的黑名单。</font><br>   希望大家遵守好规则，这会使你有一个良好的阅读时光。<br>   （本条例将于读者各自的下一次阅读时间开始，各自生效）<br>  </font><br>  <font size=2>欢迎各位读者对本条例提供修改意见</font><br></font></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>学习资料</title>
+    <url>/2024/10/12/pages/learning/</url>
+    <content><![CDATA[<font face= "kaiti">
+ <h1 style="color: red; font-size: 60px; font-weight: 400;">五班全科资料库！</h1>
+  <font style="color: black; font-size: 50px; font-weight: 400;">
+   <a href="/learningsourse/Chinese.zip">点我获取语文部分</a><br>
+   <a href="/learningsourse/Maths.zip">点我获取数学部分</a><br>
+   <a href="/learningsourse/English.zip">点我获取英语部分</a><br>
+   <a href="/learningsourse/Physics.zip">点我获取物理部分</a><br>
+   <a href="/learningsourse/Chemistry.zip">点我获取化学部分</a><br>
+   <a href="/learningsourse/Biology.zip">点我获取生物部分</a>
+  </font>
+</font>]]></content>
+  </entry>
+  <entry>
     <title>3.邀请</title>
     <url>/2024/07/09/bobo-novel/%E9%82%80%E8%AF%B7/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试. 提示：千恋万花(∠・ω< )⌒★" data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -107,19 +122,63 @@
       </tags>
   </entry>
   <entry>
-    <title>学习资料</title>
-    <url>/2024/10/12/pages/learning/</url>
-    <content><![CDATA[<font face= "kaiti">
- <h1 style="color: red; font-size: 60px; font-weight: 400;">五班全科资料库！</h1>
-  <font style="color: black; font-size: 50px; font-weight: 400;">
-   <a href="/learningsourse/Chinese.zip">点我获取语文部分</a><br>
-   <a href="/learningsourse/Maths.zip">点我获取数学部分</a><br>
-   <a href="/learningsourse/English.zip">点我获取英语部分</a><br>
-   <a href="/learningsourse/Physics.zip">点我获取物理部分</a><br>
-   <a href="/learningsourse/Chemistry.zip">点我获取化学部分</a><br>
-   <a href="/learningsourse/Biology.zip">点我获取生物部分</a>
-  </font>
+    <title>雪华：楔子</title>
+    <url>/2024/11/16/sandwich-xuehua/%E6%A5%94%E5%AD%90/</url>
+    <content><![CDATA[<font face="kaiti">
+
+  <h1>楔子</h1>
+
+ <font style="color:black;font-size:21px;font-weight:450">    
+    
+<blockquote>
+<p>编辑：三明治<br> 作者：寒江   </p>
+</blockquote>
+<p> ……</p>
+<p> 那是一片雪花。</p>
+<p> 泛着晶莹的光，挂在树的枝桠。</p>
+<p> 九重的天云是她的绒衾，</p>
+<p> 三丈的地火是她的温床。</p>
+<p> 她伴着细腻的风摇曳，那是美好的模样。</p>
+<p> 然而，</p>
+<p> 风散何间？火隐何处？</p>
+<p> 云消何时？树残何由？</p>
+<p> ……</p>
+<p> 那是一片雪花。</p>
+<p> 从天空落下，落在龟裂的大地上，融化。</p>
+<p> 化作点点星光，重回树的枝桠。</p>
+<p> 她的一切都已陨灭，留下的只是空壳。</p>
+<p> 她的一切依然存在，死去的只是身躯。</p>
+<p> 她不想坠落了，</p>
+<p> 因为触碰早已冰冷的地面，便是遗忘的开始。</p>
+<p> ……</p>
+<p> “还是失败了，对吧？”少女的身影漂浮在半空中，她伸出手，想要接住落下的“雪花”，但她的手在触碰到“雪花”的瞬间，直接穿了过去。</p>
+<p> 每有一朵“雪花”落地，她的身影便模糊一分。</p>
+<p> “……小雪，”原先郁郁葱葱的巨树，如今只剩光秃秃的树干，和干枯枝条上摇摇欲坠的“雪花”。</p>
+<p> “我……”</p>
+<p> “没事的。”少女打断了他，“‘秽灵’很难消除，我知道的……”</p>
+<p> 她的眼眶有些泛红。</p>
+<p> “可是……”她的声音很明显地颤抖起来，“可是你又要……”她的眼泪滴在地面上，浸入棋盘般分隔开来的地皮，流向深埋地底的树根。</p>
+<p> 雪下得更大了，洁白的天雪裹挟着树上透明的“雪花”一同落下，没有人说话。</p>
+<p> 巨树的枝条晃了晃，聚集起一片微弱的光，一个形容枯槁、白霜满鬓的老人逐渐出现，他的身影是如此模糊，以至于把他放在天空的背景板上，近乎看不到轮廓——即使天空也已灰白。他缓缓抱住眼前同样虚幻的少女之影。</p>
+<p> “‘遗忘’是必然的……但是办法，我找到了。”他以嘶哑且低沉的嗓音轻语。</p>
+<p> 少女的身躯猛地一颤，哭泣也同时停下。</p>
+<p> “只要……”</p>
+<p> ……</p>
+<p> 时间仿佛在这一刻静止，天地无声，无数洁白的雪点缀在灰白的世界里。</p>
+<p> 忽然间，风云乍动，以树头一枚尚未掉落的“雪花”为中心，风向它聚拢，雪向它坠落，根须中蕴藏的“灵”皆向它冲去，大地重新燃起，树下的火焰尤其明亮且高耸。</p>
+<p> 如果有后来人看到这一幕，大抵会说：</p>
+<p> 千钧一动，乾坤内藏，心花骤放复清明。</p>
+<p> 聚散一念，轮回次第，可怜风雪着长生。</p>
+<p> 这汹涌的一幕很快结束了，现在这个世界里，什么都消逝殆尽，只留下一枚晶莹的“雪花”，透过它，你还能看见树与雪的影子。</p>
+<p> ……</p>
+ </font>
 </font>]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>雪华</tag>
+      </tags>
   </entry>
   <entry>
     <title>雪华：间章</title>
