@@ -153,7 +153,7 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://registry.npmmirror.com/weblive2d/latest/files/waifu.css"><link rel="stylesheet" src="/othercode/animate.min.css"><meta name="baidu-site-verification" content="codeva-IiHvqwqRSe"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://s4.zstatic.net/npm/hexo-butterfly-wowjs@1.0.5/lib/animate.min.css" media="print" onload="this.media='screen'"><link rel="stylesheet" href="https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.5/codes/runtimejs/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+    })(window)</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://registry.npmmirror.com/weblive2d/latest/files/waifu.css"><link rel="stylesheet" src="/othercode/animate.min.css"><meta name="baidu-site-verification" content="codeva-IiHvqwqRSe"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.5/codes/runtimejs/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://s4.zstatic.net/npm/hexo-butterfly-wowjs@1.0.5/lib/animate.min.css" media="print" onload="this.media='screen'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
@@ -353,7 +353,31 @@ document.getElementById('app-refresh').style.cssText = cssText
   else if (epage === cpage){
     butterfly_clock_anzhiyu_injector_config();
   }
-  </script><script src="http://www.bjtime.cn"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+  </script><script src="http://www.bjtime.cn"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.7/codes/runtimejs/runtime.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
 for(var i = 0;i<arr.length;i++){
     arr[i].classList.add('wow');
     arr[i].classList.add('animate__zoomIn');
@@ -417,28 +441,4 @@ for(var i = 0;i<arr.length;i++){
     arr[i].setAttribute('data-wow-delay', '');
     arr[i].setAttribute('data-wow-offset', '');
     arr[i].setAttribute('data-wow-iteration', '');
-  }</script></div><script defer src="https://s4.zstatic.net/npm/hexo-butterfly-wowjs@1.0.5/lib/wow.min.js"></script><script defer src="https://s4.zstatic.net/npm/hexo-butterfly-wowjs@1.0.5/lib/wow_init.js"></script><script data-pjax>
-  function butterfly_footer_beautify_injector_config(){
-    var parent_div_git = document.getElementById('footer-wrap');
-    var item_html = '<div id="workboard"></div>';
-    console.log('已挂载butterfly_footer_beautify')
-    parent_div_git.insertAdjacentHTML("beforeend",item_html)
-    }
-  var elist = 'null'.split(',');
-  var cpage = location.pathname;
-  var epage = 'all';
-  var flag = 0;
-
-  for (var i=0;i<elist.length;i++){
-    if (cpage.includes(elist[i])){
-      flag++;
-    }
-  }
-
-  if ((epage ==='all')&&(flag == 0)){
-    butterfly_footer_beautify_injector_config();
-  }
-  else if (epage === cpage){
-    butterfly_footer_beautify_injector_config();
-  }
-  </script><script async src="https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.7/codes/runtimejs/runtime.js"></script><!-- hexo injector body_end end --></body></html>
+  }</script></div><script defer src="https://s4.zstatic.net/npm/hexo-butterfly-wowjs@1.0.5/lib/wow.min.js"></script><script defer src="https://s4.zstatic.net/npm/hexo-butterfly-wowjs@1.0.5/lib/wow_init.js"></script><!-- hexo injector body_end end --></body></html>
