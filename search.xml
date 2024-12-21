@@ -153,22 +153,22 @@
     
     
     <entry>
-      <title></title>
-      <link href="/manifest.json"/>
-      <url>/manifest.json</url>
+      <title>五班图库</title>
+      <link href="/c5pictures/Gallery.html"/>
+      <url>/c5pictures/Gallery.html</url>
       
-        <content type="html"><![CDATA[{"name":"落榜实验生","short_name":"实验生","theme_color":"#3b70fc","background_color":"#3b70fc","display":"standalone","scope":"/","start_url":"/","icons":[{"src":"/img/pwa/16.png","sizes":"16x16","type":"image/png"},{"src":"/img/pwa/32.png","sizes":"32x32","type":"image/png"},{"src":"/img/pwa/48.png","sizes":"48x48","type":"image/png"},{"src":"/img/pwa/64.png","sizes":"64x64","type":"image/png"},{"src":"/img/pwa/128.png","sizes":"128x128","type":"image/png"},{"src":"/img/pwa/144.png","sizes":"144x144","type":"image/png"},{"src":"/img/pwa/512.png","sizes":"512x512","type":"image/png"}],"splash_pages":null}]]></content>
+        <content type="html"><![CDATA[<div class="gallery-group-main"><figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.3/gallerygroup/sixthsportparty/1.png' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">运动会</div>  <p>五班珍藏图库</p>  <a href='/c5pictures/sports.html'></a>  </figcaption>  </figure>  <!--<figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">漫威</div>  <p>關於漫威的圖片</p>  <a href='/Gallery/marvel'></a>  </figcaption>  </figure>  <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://i.loli.net/2019/12/25/hOqbQ3BIwa6KWpo.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">OH MY GIRL</div>  <p>關於OH MY GIRL的圖片</p>  <a href='/Gallery/ohmygirl'></a>  </figcaption>  </figure>  --></div>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>五班图库</title>
-      <link href="/c5pictures/Gallery.html"/>
-      <url>/c5pictures/Gallery.html</url>
+      <title></title>
+      <link href="/manifest.json"/>
+      <url>/manifest.json</url>
       
-        <content type="html"><![CDATA[<div class="gallery-group-main"><figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.3/gallerygroup/sixthsportparty/1.png' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">运动会</div>  <p>五班珍藏图库</p>  <a href='/c5pictures/sports.html'></a>  </figcaption>  </figure>  <!--<figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">漫威</div>  <p>關於漫威的圖片</p>  <a href='/Gallery/marvel'></a>  </figcaption>  </figure>  <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://i.loli.net/2019/12/25/hOqbQ3BIwa6KWpo.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">OH MY GIRL</div>  <p>關於OH MY GIRL的圖片</p>  <a href='/Gallery/ohmygirl'></a>  </figcaption>  </figure>  --></div>]]></content>
+        <content type="html"><![CDATA[{"name":"落榜实验生","short_name":"实验生","theme_color":"#3b70fc","background_color":"#3b70fc","display":"standalone","scope":"/","start_url":"/","icons":[{"src":"/img/pwa/16.png","sizes":"16x16","type":"image/png"},{"src":"/img/pwa/32.png","sizes":"32x32","type":"image/png"},{"src":"/img/pwa/48.png","sizes":"48x48","type":"image/png"},{"src":"/img/pwa/64.png","sizes":"64x64","type":"image/png"},{"src":"/img/pwa/128.png","sizes":"128x128","type":"image/png"},{"src":"/img/pwa/144.png","sizes":"144x144","type":"image/png"},{"src":"/img/pwa/512.png","sizes":"512x512","type":"image/png"}],"splash_pages":null}]]></content>
       
     </entry>
     
@@ -197,17 +197,6 @@
     
     
     <entry>
-      <title></title>
-      <link href="/js/title.js"/>
-      <url>/js/title.js</url>
-      
-        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener("visibilitychange", function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = "w(ﾟДﾟ)w 不要走！再看看嘛！";    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = "♪(^∇^*)欢迎肥来！" + OriginTitile;    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>友情链接</title>
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
@@ -219,11 +208,22 @@
     
     
     <entry>
+      <title></title>
+      <link href="/js/title.js"/>
+      <url>/js/title.js</url>
+      
+        <content type="html"><![CDATA[//动态标题var OriginTitile = document.title;var titleTime;document.addEventListener("visibilitychange", function () {  if (document.hidden) {    //离开当前页面时标签显示内容    document.title = "w(ﾟДﾟ)w 不要走！再看看嘛！";    clearTimeout(titleTime);  } else {    //返回当前页面时标签显示内容    document.title = "♪(^∇^*)欢迎肥来！" + OriginTitile;    //两秒后变回正常标题    titleTime = setTimeout(function () {      document.title = OriginTitile;    }, 2000);  }});]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>电影院</title>
       <link href="/movie/index.html"/>
       <url>/movie/index.html</url>
       
-        <content type="html"><![CDATA[<script>console.error("TypeError: Cannot set properties of undefined (setting 'url=https')");</script><!--<script>console.error("TypeError: Cannot set properties of undefined (setting 'url=https')");</script>]]></content>
+        <content type="html"><![CDATA[<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"video":{"url":"https://main.c5nb.icu/movie/movies/lalala.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script><!--<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","loop":true,"video":{"url":"https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.mp4","pic":"https://moeplayer.b0.upaiyun.com/dplayer/hikarunara.jpg"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"https://api.prprpr.me/dplayer/","token":"tokendemo","addition":["https://dplayer.daoapp.io/bilibili?aid=4157142"]}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
       
     </entry>
     
@@ -234,7 +234,7 @@
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
       
-        <content type="html"><![CDATA[<!-- Simple example (id, server, type)  --><!--             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">            <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>            <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>            <meting-js  id="60198" server="netease" type="playlist" autoplay="false" mutex="true" listmaxheight="340px" preload="auto" theme="#ad7a86"></meting-js> --><!-- Advanced example -->            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">            <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>            <script src="https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js"></script>            <meting-js  id="60198" server="netease" type="playlist" autoplay="true" mutex="false" listmaxheight="340px" preload="none" theme="#ad7a86"></meting-js>]]></content>
+        <content type="html"><![CDATA[<!-- Simple example (id, server, type)  --><!--     <div id="aplayer-lQtjBgkf" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="60198" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div> --><!-- Advanced example -->    <div id="aplayer-WuUnQtar" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="60198" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"    ></div>]]></content>
       
     </entry>
     
