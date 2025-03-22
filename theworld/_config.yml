@@ -3,10 +3,15 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: the_world
+title: '落榜实验生'
 subtitle: ''
 description: 'guide maker of class 5'
-keywords: 大实验科技城校区
+keywords: 
+  - 苏州
+  - 大实验
+  - 实验科技城校区
+  - 2023级
+  - 五班
 author:  五班！
 language: zh-CN
 timezone: ''
@@ -14,11 +19,19 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://example.com
-permalink: :year/:month/:day/:title/
+permalink: posts/:abbrlink.html #:year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# abbrlink config
+abbrlink:
+  alg: crc32      # Algorithm used to calc abbrlink. Support crc16(default) and crc32
+  rep: hex        # Representation of abbrlink in URLs. Support dec(default) and hex
+  drafts: false   # Whether to generate abbrlink for drafts. (false in default)
+  force: false    # Enable force mode. In this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had an abbrlink. (false in default)
+  writeback: true # Whether to write changes to front-matters back to the actual markdown files. (true in default)
 
 # Directory
 source_dir: source
@@ -29,6 +42,28 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+
+# electric_clock
+# see https://blog.anheyu.com/posts/fc18.html
+electric_clock:
+  enable: true # 开关
+  priority: 11 #过滤器优先权
+  enable_page: / # 应用页面
+  exclude:
+  # - /posts/
+  # - /about/
+  layout: # 挂载容器类型
+    type: class
+    name: sticky_layout
+    index: 0
+  loading: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif #加载动画自定义
+  clock_css: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css
+  clock_js: https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js
+  ip_api: http://www.bjtime.cn #https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
+  qweather_key: 2c69ced3d58c481dacb3fd7552272566 # 和风天气key
+  gaud_map_key: a6402333153c7066bd8b6bebd9204755 # 高得地图web服务key
+  default_rectangle: false # 开启后将一直显示rectangle位置的天气，否则将获取访问者的地理位置与天气
+  rectangle: 112.982279,28.19409 # 获取访问者位置失败时会显示该位置的天气，同时该位置为开启default_rectangle后的位置
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -63,6 +98,7 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
+  pagination_dir: page
 
 # Category & Tag
 default_category: uncategorized
@@ -114,12 +150,41 @@ aplayer:
   meting: true
   asset_inject: false
 
-encrypt: # hexo-blog-encrypt
+encrypt: # hexo-blog-encrypt 这是加密文章的插件
   abstract: 有东西被加密了, 请输入密码查看.
   message: 您好, 这里需要密码.
   tags:
-  - {name: bobonovel, password: (∠・ω< )⌒☆}
+  - {name: 林缺之行, password: ciallo}
   #- {name: bobonovel, password: 密码B}
   theme: xray
   wrong_pass_message: 抱歉, 这个密码看着不太对, 请再试试. 提示：千恋万花(∠・ω< )⌒★
   wrong_hash_message: 抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.
+
+
+sitemap:  #这是自动生成sitemap的插件
+  path: 
+    - sitemap.xml
+    - sitemap.txt
+  template: #./sitemap_template.xml
+  template_txt: #./sitemap_template.txt
+  rel: false
+  tags: true
+  categories: true
+
+baidusitemap: #百度专属sitemap生成的插件
+path: baidusitemap.xml
+
+nofollow:
+  enable: true
+  field: site
+  exclude:
+    - 'main.c5nb.icu'
+  #  - 'exclude2.com'
+
+
+search:
+  path: search.xml
+  field: all
+  content: true
+  
+

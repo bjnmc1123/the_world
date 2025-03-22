@@ -1,0 +1,35 @@
+- class_name: 友情链接
+  class_desc: 那些人，那些事
+  link_list:
+    - name: Hexo
+      link: https://hexo.io/zh-tw/
+      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+      descr: 快速、简单且强大的网志框架
+    - name: Gihub
+      link: https://github.com/
+      avatar: https://github.githubassets.com/favicons/favicon.png
+      descr: 一个面向开源及私有软件项目的托管平台
+    - name: npm
+      link: https://www.npmjs.com/
+      avatar: https://static-production.npmjs.com/b0f1a8318363185cc2ea6a40ac23eeb2.png
+      descr: JavaScript 包管理器
+    
+- class_name: 网站
+  class_desc: 点名某些网站
+  link_list:
+    - name: 实验中学
+      avatar: https://szsyzx.jssnd.edu.cn/content/szsyzx/base/img/favicon.ico?v=iDnyJopvMPdtrrN6qSZMv8KAJjN6j7dq5g8dVcFFjm0
+      link: https://szsyzx.jssnd.edu.cn/
+      descr: 大实验官网
+    - name: Youtube
+      link: https://www.youtube.com/
+      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+      descr: 视频网站
+    #- name: Weibo
+    #  link: https://www.weibo.com/
+    #  avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
+    #  descr: 中国最大社交分享平台
+    #- name: Twitter
+    #  link: https://twitter.com/
+    #  avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
+    #  descr: 社交分享平台
