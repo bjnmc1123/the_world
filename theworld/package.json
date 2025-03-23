@@ -7,7 +7,10 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
-    "linkstart": "hexo clean && hexo generate && hexo deploy"
+    "start": "git pull",                   
+    "test": "hexo clean && hexo generate && hexo server",      
+    "linkstart": "hexo deploy",  
+    "end": "git add . && git commit -m 'update' && git push"   
   },
   "hexo": {
     "version": "7.2.0"
