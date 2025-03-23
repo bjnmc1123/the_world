@@ -29,15 +29,6 @@
   </url>
   
   <url>
-    <loc>https://example.com/posts/707db969.html</loc>
-    
-    <lastmod>2025-01-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://example.com/posts/a7a599fd.html</loc>
     
     <lastmod>2025-01-23</lastmod>
@@ -48,6 +39,15 @@
   
   <url>
     <loc>https://example.com/posts/9f2864c2.html</loc>
+    
+    <lastmod>2025-01-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/707db969.html</loc>
     
     <lastmod>2025-01-23</lastmod>
     

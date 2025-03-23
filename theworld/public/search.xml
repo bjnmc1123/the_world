@@ -105,6 +105,19 @@
     
     
     <entry>
+      <title>波波的阅读须知</title>
+      <link href="/posts/a7a599fd.html"/>
+      <url>/posts/a7a599fd.html</url>
+      
+        <content type="html"><![CDATA[<font face="kaiti"> <h1 style="color: red;">读者须知(有删改)</h1> <font style="color: black; font-size: 21px; font-weight: 450;">    <blockquote><p>作者：波波<br>编辑：三明治</p></blockquote><p>   亲爱的读者，你好，感谢你对本作品的喜爱与赞美。但是，仍旧有一些条例需要遵守。</p><p>   1.本小说为免费阅读的作品，本人不会以任何形式私信你们来赚取费用</p><p>   2.本小说更新时间不固定，但是一旦更新，就不只一篇</p><p>   3.本小说禁止中国港、澳、台和已满18周岁者阅读</p><p>   4.请勿向不知道此小说存在的人透露内容</p><p>   5.如若被抓包，统一报备抓包者姓名（编辑觉得在网上被抓就要全部趋势了罢）</p><p>   6.所有读者，自动默认为同意此须知</p><p>   7.请勿将此小说用来作为任何盈利手段</p><p>   <font color=blue>违反条例者，将</font><font color=red>终身</font><font color=blue>纳入本小说的黑名单。</font><br>   希望大家遵守好规则，这会使你有一个良好的阅读时光。<br>   （本条例将于读者各自的下一次阅读时间开始，各自生效）<br>  </font><br>  <font size=2>欢迎各位读者对本条例提供修改意见</font><br></font></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>波波的奇妙小说3</title>
       <link href="/posts/707db969.html"/>
       <url>/posts/707db969.html</url>
@@ -118,19 +131,6 @@
             <tag> 林缺之行 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>波波的阅读须知</title>
-      <link href="/posts/a7a599fd.html"/>
-      <url>/posts/a7a599fd.html</url>
-      
-        <content type="html"><![CDATA[<font face="kaiti"> <h1 style="color: red;">读者须知(有删改)</h1> <font style="color: black; font-size: 21px; font-weight: 450;">    <blockquote><p>作者：波波<br>编辑：三明治</p></blockquote><p>   亲爱的读者，你好，感谢你对本作品的喜爱与赞美。但是，仍旧有一些条例需要遵守。</p><p>   1.本小说为免费阅读的作品，本人不会以任何形式私信你们来赚取费用</p><p>   2.本小说更新时间不固定，但是一旦更新，就不只一篇</p><p>   3.本小说禁止中国港、澳、台和已满18周岁者阅读</p><p>   4.请勿向不知道此小说存在的人透露内容</p><p>   5.如若被抓包，统一报备抓包者姓名（编辑觉得在网上被抓就要全部趋势了罢）</p><p>   6.所有读者，自动默认为同意此须知</p><p>   7.请勿将此小说用来作为任何盈利手段</p><p>   <font color=blue>违反条例者，将</font><font color=red>终身</font><font color=blue>纳入本小说的黑名单。</font><br>   希望大家遵守好规则，这会使你有一个良好的阅读时光。<br>   （本条例将于读者各自的下一次阅读时间开始，各自生效）<br>  </font><br>  <font size=2>欢迎各位读者对本条例提供修改意见</font><br></font></p>]]></content>
-      
-      
       
     </entry>
     
@@ -195,17 +195,6 @@
     
     
     <entry>
-      <title>友情链接</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>电影院</title>
       <link href="/movie/index.html"/>
       <url>/movie/index.html</url>
@@ -221,7 +210,18 @@
       <link href="/music/index.html"/>
       <url>/music/index.html</url>
       
-        <content type="html"><![CDATA[<!-- Simple example (id, server, type)  --><!--     <div id="aplayer-XLUbofCc" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="60198" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div> --><!-- Advanced example -->    <div id="aplayer-uwLQWDrA" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="60198" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"    ></div>]]></content>
+        <content type="html"><![CDATA[<!-- Simple example (id, server, type)  --><!--     <div id="aplayer-GJtkJJRB" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="60198" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"    ></div> --><!-- Advanced example -->    <div id="aplayer-vJIAEjOf" class="aplayer aplayer-tag-marker meting-tag-marker"         data-id="60198" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"    ></div>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友情链接</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
