@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://example.com/movie/index.html</loc>
+    <loc>https://example.com/link/index.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://example.com/link/index.html</loc>
+    <loc>https://example.com/movie/index.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
