@@ -1071,6 +1071,7 @@ inject:
     - <link rel="stylesheet" href="https://registry.npmmirror.com/weblive2d/latest/files/waifu.css"> #live2D
     - <link rel="stylesheet" src="/othercode/animate.min.css">
     - <meta name="baidu-site-verification" content="codeva-IiHvqwqRSe"> #百度验证
+    - <meta name="msvalidate.01" content="504B9E386614375185D1A639B0876A04" /> #bing验证
   bottom:
    - <div class="aplayer no-destroy" data-id="10038825882" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-order="random" data-volume="0.3" data-mutex="true" data-listMaxHeight="36vh"> </div>
     # 歌单备选12237702920 #
