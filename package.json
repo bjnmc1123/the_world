@@ -1,0 +1,26 @@
+{
+  "name": "website3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server",
+    "start": "git add . && git commit && git fetch origin master && git reset --hard origin/master && git checkout master " ,                   
+    "test": "hexo clean && hexo generate && hexo server",      
+    "linkstart": "hexo deploy",  
+    "end": "git add . && git commit -m 'update' && git push" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjnmc1123/the_world.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjnmc1123/the_world/issues"
+  },
+  "homepage": "https://github.com/bjnmc1123/the_world#readme",
+  "description": ""
+}
