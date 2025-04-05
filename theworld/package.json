@@ -10,7 +10,7 @@
     "start": "git add . && git commit && git fetch origin master && git reset --hard origin/master && git checkout master " ,                   
     "test": "hexo clean && hexo generate && hexo server",      
     "linkstart": "hexo deploy",  
-    "end": "git add . && git commit -m 'update' && git push"   
+    "end": "git add . && git commit -m 'update' && git push --set-upstream origin master"   
   },
   "hexo": {
     "version": "7.2.0"
