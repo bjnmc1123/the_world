@@ -50,7 +50,8 @@ favicon: https://s4.zstatic.net/npm/npm-test-for-css@1.0.10/picture/config/网�
 
 # Avatar (頭像)
 avatar:
-  img: https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.1/config/theclasshead.jpg
+  img: https://main.c5nb.icu/img/pwa/144.png
+  # https://s4.zstatic.net/npm/npm-picture-of-bjnmc@1.0.1/config/theclasshead.jpg
   #img: https://unpkg.com/npm/npm-test-for-css@1.1.7/picture/config/nice.png #https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png
   effect: false
 
@@ -105,7 +106,7 @@ error_img:
 error_404:
   enable: ture
   subtitle: '班长也不知道出什么错了捏'
-  background: https://s4.zstatic.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg #src="/img/"#https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
+  background: https://cdn.jsdelivr.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg # https://s4.zstatic.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg #https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
  
 post_meta:
   page: # Home Page
@@ -215,7 +216,7 @@ footer:
   owner:
     enable: false
     since: 2023
-  custom_text: "©2023 - 2024 By FAN"
+  custom_text: "©2023 - 2025 By FAN"
   copyright: false # Copyright of theme and framework
 
 # aside (側邊欄)
@@ -649,8 +650,12 @@ text_align_justify: false
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://s4.zstatic.net/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png)
-#background: url(https://cdn.jsdelivr.net/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png)  #background: url(https://unpkg.zhimg.com/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png)  # url(https://s2.loli.net/2024/06/08/OijZpyUguea7N1q.jpg)  #  url(http://sck4zdel1.hn-bkt.clouddn.com/%E5%9B%BE%E5%BA%8A/%E7%A5%9E%E5%AD%902.jpg)
+background: url(https://main.c5nb.icu/img/config/girlclear.png)
+# url(https://s4.zstatic.net/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png)
+#background: url(https://cdn.jsdelivr.net/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png) 
+ #background: url(https://unpkg.zhimg.com/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png) 
+  # url(https://s2.loli.net/2024/06/08/OijZpyUguea7N1q.jpg) 
+   #  url(http://sck4zdel1.hn-bkt.clouddn.com/%E5%9B%BE%E5%BA%8A/%E7%A5%9E%E5%AD%902.jpg)
 
 # Footer Background
 footer_bg: transparent
