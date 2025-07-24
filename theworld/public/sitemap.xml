@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://example.com/posts/707db969.html</loc>
+    <loc>https://example.com/posts/62beb86d.html</loc>
     
     <lastmod>2025-07-24</lastmod>
     
@@ -11,7 +11,25 @@
   </url>
   
   <url>
-    <loc>https://example.com/posts/9e73d845.html</loc>
+    <loc>https://example.com/posts/cdb14d05.html</loc>
+    
+    <lastmod>2025-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/a7a599fd.html</loc>
+    
+    <lastmod>2025-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/707db969.html</loc>
     
     <lastmod>2025-07-24</lastmod>
     
@@ -29,9 +47,36 @@
   </url>
   
   <url>
-    <loc>https://example.com/posts/62beb86d.html</loc>
+    <loc>https://example.com/posts/9e73d845.html</loc>
     
-    <lastmod>2025-04-05</lastmod>
+    <lastmod>2025-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/fa5fb4ac.html</loc>
+    
+    <lastmod>2025-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/ddc2f6c.html</loc>
+    
+    <lastmod>2025-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/9b3c0d24.html</loc>
+    
+    <lastmod>2025-07-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -56,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://example.com/movie/index.html</loc>
+    <loc>https://example.com/link/index.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
@@ -65,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://example.com/link/index.html</loc>
+    <loc>https://example.com/movie/index.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
@@ -84,24 +129,6 @@
   
   <url>
     <loc>https://example.com/c5pictures/sports.html</loc>
-    
-    <lastmod>2025-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/9b3c0d24.html</loc>
-    
-    <lastmod>2025-04-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/a7a599fd.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
@@ -136,6 +163,20 @@
   
   <url>
     <loc>https://example.com/tags/%E9%9B%AA%E5%8D%8E/</loc>
+    <lastmod>2025-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/%E6%96%97%E7%BD%97%E5%A4%A7%E9%99%86/</loc>
+    <lastmod>2025-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/%E6%81%90%E6%80%96/</loc>
     <lastmod>2025-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
