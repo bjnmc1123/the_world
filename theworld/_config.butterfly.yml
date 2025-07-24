@@ -105,7 +105,7 @@ error_img:
 # A simple 404 page
 error_404:
   enable: ture
-  subtitle: '好耶！出现未知错误！去告诉班长啵~'
+  subtitle: '好耶！出现未知错误！告诉班长啵~'
   background: https://cdn.jsdelivr.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg # https://s4.zstatic.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg #https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
  
 post_meta:

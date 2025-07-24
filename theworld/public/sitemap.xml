@@ -4,7 +4,7 @@
   <url>
     <loc>https://example.com/posts/707db969.html</loc>
     
-    <lastmod>2025-04-19</lastmod>
+    <lastmod>2025-07-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,7 @@
   <url>
     <loc>https://example.com/posts/9e73d845.html</loc>
     
-    <lastmod>2025-04-19</lastmod>
+    <lastmod>2025-07-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +22,7 @@
   <url>
     <loc>https://example.com/posts/77a89ff.html</loc>
     
-    <lastmod>2025-04-19</lastmod>
+    <lastmod>2025-07-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -38,63 +38,9 @@
   </url>
   
   <url>
-    <loc>https://example.com/movie/index.html</loc>
-    
-    <lastmod>2025-01-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/a7a599fd.html</loc>
-    
-    <lastmod>2025-01-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/9f2864c2.html</loc>
-    
-    <lastmod>2025-01-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/9b3c0d24.html</loc>
-    
-    <lastmod>2025-01-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://example.com/music/index.html</loc>
     
-    <lastmod>2024-11-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/c5pictures/Gallery.html</loc>
-    
-    <lastmod>2024-11-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/c5pictures/sports.html</loc>
-    
-    <lastmod>2024-10-26</lastmod>
+    <lastmod>2025-04-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -103,7 +49,16 @@
   <url>
     <loc>https://example.com/manifest.json</loc>
     
-    <lastmod>2024-10-18</lastmod>
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/movie/index.html</loc>
+    
+    <lastmod>2025-04-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -112,7 +67,52 @@
   <url>
     <loc>https://example.com/link/index.html</loc>
     
-    <lastmod>2024-10-12</lastmod>
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/c5pictures/Gallery.html</loc>
+    
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/c5pictures/sports.html</loc>
+    
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/9b3c0d24.html</loc>
+    
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/a7a599fd.html</loc>
+    
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/9f2864c2.html</loc>
+    
+    <lastmod>2025-04-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
