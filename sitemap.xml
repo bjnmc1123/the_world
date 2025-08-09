@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://example.com/posts/86294e2.html</loc>
+    
+    <lastmod>2025-08-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://example.com/posts/a7a599fd.html</loc>
     
     <lastmod>2025-08-09</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://example.com/posts/707db969.html</loc>
-    
-    <lastmod>2025-08-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/posts/8629400.html</loc>
     
     <lastmod>2025-08-09</lastmod>
     
@@ -146,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://example.com/c5pictures/Gallery.html</loc>
+    <loc>https://example.com/c5pictures/sports.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://example.com/c5pictures/sports.html</loc>
+    <loc>https://example.com/c5pictures/Gallery.html</loc>
     
     <lastmod>2025-04-05</lastmod>
     
