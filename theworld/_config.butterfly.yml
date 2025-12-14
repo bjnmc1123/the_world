@@ -13,7 +13,7 @@ menu:
    功能||icon-gongnengchanyequan-copy: 
     目录: /archives/ || fas fa-archive
     留言板: /comments/ || fas fa-envelope
-    学习: /2024/10/12/pages/learning/ || icon-dianzihetong
+    学习: /posts/9f2864c2.html/ || icon-dianzihetong
     相册: /c5pictures/Gallery.html/ || fas fa-images
    休闲||fas fa-list:
      音乐: /music/ || fas fa-music 
@@ -650,7 +650,7 @@ text_align_justify: false
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://main.c5nb.icu/img/config/girlclear.png)
+background: url(https://main.c5nb.icu/img/config/1.png)
 # url(https://s4.zstatic.net/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png)
 #background: url(https://cdn.jsdelivr.net/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png) 
  #background: url(https://unpkg.zhimg.com/npm/npm-test-for-css@1.0.5/picture/background/girlclear.png) 
