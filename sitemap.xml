@@ -180,13 +180,6 @@
   </url>
   
   <url>
-    <loc>https://main.c5nb.icu/tags/%E9%9B%AA%E5%8D%8E/</loc>
-    <lastmod>2025-12-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://main.c5nb.icu/tags/%E6%96%97%E7%BD%97%E5%A4%A7%E9%99%86/</loc>
     <lastmod>2025-12-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -195,6 +188,13 @@
   
   <url>
     <loc>https://main.c5nb.icu/tags/%E6%81%90%E6%80%96/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://main.c5nb.icu/tags/%E9%9B%AA%E5%8D%8E/</loc>
     <lastmod>2025-12-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
