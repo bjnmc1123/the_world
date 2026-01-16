@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "pageTitle": "试卷资源中心 - 您的学习助手",
+  "siteName": "试卷资源中心",
+  "siteSubtitle": "您的学习助手",
+  "header": {
+    "title": "试卷资源中心",
+    "subtitle": "点我返回主页",
+    "icon": "fas fa-graduation-cap"
+  },
+  "mainSection": {
+    "title": "试卷资源下载",
+    "description": "精选优质试卷，助力学习进步",
+    "emptyState": {
+      "icon": "fas fa-file-search",
+      "title": "未找到相关试卷",
+      "message": "尝试调整搜索关键词或筛选条件",
+      "buttonText": "重置所有筛选"
+    }
+  },
+  "footer": {
+    "backgroundColor": "#1a1a1a",
+    "backgroundOpacity": 0.4,
+    "textColor": "#ffffff",
+    "copyrightText": "© 2026 By FANxy & CanSnowy",
+    "additionalText": "",
+    "contactInfo": "联系方式: contact@example.com",
+    "disclaimer": "本网站所有资源仅供学习交流使用，如有侵权请联系我们。"
+  },
+  "uiConfig": {
+    "itemsPerPage": 12,
+    "backgroundImage": "https://main.c5nb.icu/img/config/1.png",
+    "backgroundOpacity": 0.8,
+    "navbar": {
+      "backgroundColor": "#4a6cf7",
+      "backgroundOpacity": 1
+    },
+    "colors": {
+      "primary": "#4a6cf7",
+      "primaryLight": "#eef2ff",
+      "primaryDark": "#3a5ce5",
+      "secondary": "#6c757d"
+    }
+  },
+  "quickFilters": [
+    {
+      "text": "全部",
+      "filter": "all"
+    },
+    {
+      "text": "数学",
+      "filter": "subject:数学"
+    },
+    {
+      "text": "英语",
+      "filter": "subject:英语"
+    },
+    {
+      "text": "物理",
+      "filter": "subject:物理"
+    },
+    {
+      "text": "化学",
+      "filter": "subject:化学"
+    },
+    {
+      "text": "高考真题",
+      "filter": "tag:高考真题"
+    },
+    {
+      "text": "模拟题",
+      "filter": "tag:模拟题"
+    }
+  ],
+  "availableGrades": ["高一", "高二", "高三"],
+  "splashScreen": {
+    "enabled": true,
+    "duration": 2000,
+    "backgroundColor": "#7FBFFF",
+    "textColor": "#ffffff",
+    "spiralColor": "#ffffff"
+  }
+}

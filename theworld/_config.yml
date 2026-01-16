@@ -41,12 +41,12 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: ExamDownloadPage/**/*
 
 # electric_clock
 # see https://blog.anheyu.com/posts/fc18.html
 electric_clock:
-  enable: true # 开关
+  enable: false # 开关
   priority: 11 #过滤器优先权
   enable_page: / # 应用页面
   exclude:

@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "exams": [
+    {
+      "id": "math-2023-001",
+      "name": "2023年高考数学全国卷I",
+      "description": "2023年普通高等学校招生全国统一考试数学试卷（新课标I卷），包含函数、几何、概率统计等综合题目",
+      "subject": "数学",
+      "difficulty": "困难",
+      "views": 12560,
+      "downloads": 8920,
+      "source": "历年高考",
+      "fileUrl": "https://your-cdn-domain.com/exams/files/math-2023-nation-i.pdf",
+      "fileSize": 8456729,
+      "fileFormat": "pdf",
+      "previewImages": [
+        "https://your-cdn-domain.com/exams/previews/math-2023-preview-1.jpg",
+        "https://your-cdn-domain.com/exams/previews/math-2023-preview-2.jpg"
+      ],
+      "tags": ["高考真题", "新课标", "综合卷", "函数", "几何"],
+      "year": 2023,
+      "grade": "高三",
+      "author": "教育部考试中心",
+      "pageCount": 12,
+      "hasAnswer": true,
+      "answerIncluded": true,
+      "recommendedTime": 120,
+      "uploadDate": "2023-06-15"
+    },
+    {
+      "id": "english-2023-001",
+      "name": "高中英语阅读理解专项训练",
+      "description": "包含科技、文化、社会等多主题的英语阅读理解练习，适合高二、高三学生使用",
+      "subject": "英语",
+      "difficulty": "中等",
+      "views": 8450,
+      "source": "",
+      "fileUrl": "https://your-cdn-domain.com/exams/files/english-reading-practice.pdf",
+      "fileSize": 3245678,
+      "fileFormat": "pdf",
+      "previewImages": [
+        "https://your-cdn-domain.com/exams/previews/english-preview-1.jpg"
+      ],
+      "tags": ["阅读理解", "专项训练", "词汇积累", "英语"],
+      "year": 2023,
+      "grade": "高二",
+      "author": "测试",
+      "pageCount": 8,
+      "hasAnswer": true,
+      "answerIncluded": true,
+      "recommendedTime": 90,
+      "uploadDate": "2023-09-20"
+    }
+  ]
+}

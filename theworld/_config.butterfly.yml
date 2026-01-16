@@ -13,11 +13,12 @@ menu:
    功能||icon-gongnengchanyequan-copy: 
     目录: /archives/ || fas fa-archive
     留言板: /comments/ || fas fa-envelope
-    学习: /posts/9f2864c2.html/ || icon-dianzihetong
+    学习: /learningpage/ || icon-dianzihetong
     相册: /c5pictures/Gallery.html/ || fas fa-images
+    试卷下载: /ExamDownloadPage/ || fas fa-envelope
    休闲||fas fa-list:
      音乐: /music/ || fas fa-music 
-     电影: /movie/index.html || fas fa-video
+     电影: /movie/ || fas fa-video
      原神大地图: https://act.mihoyo.com/ys/app/interactive-map/index.html?lang=zh-cn#/map/2 || icon-yuanshen-wa
   # Tags: /tags/ || fas fa-tags
   # Categories: /categories/ || fas fa-folder-open
@@ -104,7 +105,7 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: ture
+  enable: true
   subtitle: '好耶！出现未知错误！告诉班长啵~'
   background: https://cdn.jsdelivr.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg # https://s4.zstatic.net/npm/npm-test-for-css@1.0.10/picture/background/404.jpg #https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
  
@@ -216,7 +217,7 @@ footer:
   owner:
     enable: false
     since: 2023
-  custom_text: "©2023 - 2025 By FAN"
+  custom_text: "©2023 - 2026 By FANxy"
   copyright: false # Copyright of theme and framework
 
 # aside (側邊欄)
@@ -281,8 +282,8 @@ aside:
 # busuanzi count for PV / UV in site
 # 訪問人數
 busuanzi:
-  site_uv: true
-  site_pv: true
+  site_uv: false
+  site_pv: false
   page_pv: true
 
 # Time difference between publish date and now (網頁運行時間)
