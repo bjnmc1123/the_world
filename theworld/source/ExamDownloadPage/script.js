@@ -42,6 +42,8 @@ class ExamPlatform {
         };
         
         this.modalInstance = null;
+        this.isRendering = false;
+        this.renderTimeout = null;
         
         this.init();
     }
@@ -777,7 +779,7 @@ class ExamPlatform {
         const totalPages = Math.ceil(totalExams / itemsPerPage);
         
         this.state.pagination = {
-            currentPage: 1,
+            currentPage: Math.min(this.state.pagination.currentPage, Math.max(1, totalPages)),
             totalPages: Math.max(1, totalPages)
         };
     }
@@ -786,15 +788,39 @@ class ExamPlatform {
         if (page < 1 || page > this.state.pagination.totalPages) return;
         
         this.state.pagination.currentPage = page;
-        this.renderExamsGrid();
+        this.scheduleRender();
         
-        // 滚动到顶部
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // 平滑滚动到顶部，但不要立即执行，让浏览器有时间处理渲染
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 50);
+    }
+    
+    scheduleRender() {
+        // 如果已经在渲染中，取消之前的渲染
+        if (this.renderTimeout) {
+            clearTimeout(this.renderTimeout);
+        }
+        
+        // 如果当前正在渲染，等待一小段时间再重新渲染
+        if (this.isRendering) {
+            this.renderTimeout = setTimeout(() => {
+                this.render();
+            }, 100);
+        } else {
+            this.render();
+        }
     }
     
     render() {
-        this.renderExamsGrid();
-        this.renderPagination();
+        this.isRendering = true;
+        
+        // 使用requestAnimationFrame确保在下一个动画帧渲染，避免卡顿
+        requestAnimationFrame(() => {
+            this.renderExamsGrid();
+            this.renderPagination();
+            this.isRendering = false;
+        });
     }
     
     renderExamsGrid() {
@@ -824,10 +850,21 @@ class ExamPlatform {
             paginationEl.classList.remove('d-none');
         }
         
-        // 生成试卷卡片
-        gridEl.innerHTML = this.state.displayedExams.map((exam, index) => {
-            return this.createExamCard(exam, index);
-        }).join('');
+        // 生成试卷卡片 - 使用DocumentFragment批量添加DOM节点
+        const fragment = document.createDocumentFragment();
+        const container = document.createElement('div');
+        container.style.display = 'contents'; // 保持grid布局
+        
+        this.state.displayedExams.forEach((exam, index) => {
+            const examCard = this.createExamCardElement(exam, index);
+            container.appendChild(examCard);
+        });
+        
+        fragment.appendChild(container);
+        
+        // 清空现有内容并添加新内容
+        gridEl.innerHTML = '';
+        gridEl.appendChild(fragment);
         
         // 添加图片加载处理
         this.initImageLoading();
@@ -882,18 +919,81 @@ class ExamPlatform {
         `;
     }
     
+    createExamCardElement(exam, index) {
+        const isFavorite = this.state.favorites.has(exam.id);
+        const fileSizeMB = exam.fileSize ? (exam.fileSize / 1024 / 1024).toFixed(1) : '0';
+        const previewImage = exam.previewImages && exam.previewImages[0] ? exam.previewImages[0] : '';
+        
+        const card = document.createElement('div');
+        card.className = 'exam-card';
+        card.dataset.examId = exam.id;
+        
+        card.innerHTML = `
+            <div class="exam-image-container" id="image-container-${exam.id}">
+                <img src="${previewImage}" 
+                     alt="${exam.name}"
+                     class="exam-image"
+                     loading="lazy"
+                     onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')"
+                     onerror="this.style.display='none'">
+                <button class="exam-favorite-btn ${isFavorite ? 'active' : ''}" 
+                        data-exam-id="${exam.id}"
+                        aria-label="${isFavorite ? '取消收藏' : '收藏'}">
+                    <i class="${isFavorite ? 'fas' : 'far'} fa-star"></i>
+                </button>
+            </div>
+            <div class="exam-content">
+                <h3 class="exam-title">${exam.name}</h3>
+                <p class="exam-description">${exam.description}</p>
+                <div class="exam-tags">
+                    <span class="exam-tag">${exam.subject}</span>
+                    <span class="exam-tag">${exam.difficulty}</span>
+                    ${exam.grade ? `<span class="exam-tag">${exam.grade}</span>` : ''}
+                    ${exam.tags && exam.tags.slice(0, 2).map(tag => 
+                        `<span class="exam-tag">${tag}</span>`
+                    ).join('')}
+                </div>
+                <div class="exam-meta">
+                    <div class="exam-meta-item">
+                        <i class="fas fa-university"></i>
+                        <span>${exam.source || '未知来源'}</span>
+                    </div>
+                    <div class="exam-meta-item">
+                        <i class="fas fa-download"></i>
+                        <span>${fileSizeMB} MB</span>
+                    </div>
+                </div>
+                <button class="exam-view-btn" data-exam-id="${exam.id}">
+                    查看详情
+                </button>
+            </div>
+        `;
+        
+        return card;
+    }
+    
     initImageLoading() {
-        // 处理图片加载
-        setTimeout(() => {
-            document.querySelectorAll('.exam-image').forEach(img => {
-                if (img.complete) {
-                    img.classList.add('loaded');
-                    if (img.parentElement) {
-                        img.parentElement.classList.add('loaded');
-                    }
-                }
+        // 处理图片加载 - 使用requestIdleCallback在浏览器空闲时执行
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                this.processLoadedImages();
             });
-        }, 100);
+        } else {
+            setTimeout(() => {
+                this.processLoadedImages();
+            }, 100);
+        }
+    }
+    
+    processLoadedImages() {
+        document.querySelectorAll('.exam-image').forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+                if (img.parentElement) {
+                    img.parentElement.classList.add('loaded');
+                }
+            }
+        });
     }
     
     renderPagination() {
@@ -912,7 +1012,7 @@ class ExamPlatform {
         // 上一页按钮
         paginationHTML += `
             <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                <a class="page-link" href="#" onclick="examPlatform.goToPage(${currentPage - 1}); return false;">
+                <a class="page-link" href="#" data-page="${currentPage - 1}">
                     <i class="fas fa-chevron-left"></i>
                 </a>
             </li>
@@ -930,7 +1030,7 @@ class ExamPlatform {
         if (startPage > 1) {
             paginationHTML += `
                 <li class="page-item">
-                    <a class="page-link" href="#" onclick="examPlatform.goToPage(1); return false;">1</a>
+                    <a class="page-link" href="#" data-page="1">1</a>
                 </li>
                 ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
             `;
@@ -939,7 +1039,7 @@ class ExamPlatform {
         for (let i = startPage; i <= endPage; i++) {
             paginationHTML += `
                 <li class="page-item ${i === currentPage ? 'active' : ''}">
-                    <a class="page-link" href="#" onclick="examPlatform.goToPage(${i}); return false;">${i}</a>
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
                 </li>
             `;
         }
@@ -948,7 +1048,7 @@ class ExamPlatform {
             paginationHTML += `
                 ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
                 <li class="page-item">
-                    <a class="page-link" href="#" onclick="examPlatform.goToPage(${totalPages}); return false;">${totalPages}</a>
+                    <a class="page-link" href="#" data-page="${totalPages}">${totalPages}</a>
                 </li>
             `;
         }
@@ -956,7 +1056,7 @@ class ExamPlatform {
         // 下一页按钮
         paginationHTML += `
             <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                <a class="page-link" href="#" onclick="examPlatform.goToPage(${currentPage + 1}); return false;">
+                <a class="page-link" href="#" data-page="${currentPage + 1}">
                     <i class="fas fa-chevron-right"></i>
                 </a>
             </li>
@@ -1201,7 +1301,7 @@ class ExamPlatform {
                 clearTimeout(searchTimeout);
                 searchTimeout = setTimeout(() => {
                     this.applyFilters();
-                    this.render();
+                    this.scheduleRender();
                 }, 300);
             });
         }
@@ -1212,7 +1312,7 @@ class ExamPlatform {
             clearSearchBtn.addEventListener('click', () => {
                 if (searchInput) searchInput.value = '';
                 this.applyFilters();
-                this.render();
+                this.scheduleRender();
             });
         }
         
@@ -1235,7 +1335,7 @@ class ExamPlatform {
         if (applyFiltersBtn) {
             applyFiltersBtn.addEventListener('click', () => {
                 this.applyFilters();
-                this.render();
+                this.scheduleRender();
             });
         }
         
@@ -1260,7 +1360,7 @@ class ExamPlatform {
         if (favoritesOnly) {
             favoritesOnly.addEventListener('change', () => {
                 this.applyFilters();
-                this.render();
+                this.scheduleRender();
             });
         }
         
@@ -1307,6 +1407,15 @@ class ExamPlatform {
                     e.stopPropagation();
                 }
             }
+            
+            // 分页按钮点击
+            if (e.target.closest('.page-link') && e.target.closest('.page-link').dataset.page) {
+                e.preventDefault();
+                const page = parseInt(e.target.closest('.page-link').dataset.page);
+                if (!isNaN(page)) {
+                    this.goToPage(page);
+                }
+            }
         });
         
         // URL参数处理
@@ -1327,7 +1436,7 @@ class ExamPlatform {
         }
         
         this.applyFilters();
-        this.render();
+        this.scheduleRender();
     }
     
     resetFilters() {
@@ -1363,7 +1472,7 @@ class ExamPlatform {
         });
         
         this.applyFilters();
-        this.render();
+        this.scheduleRender();
     }
     
     handleUrlParams() {
