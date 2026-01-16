@@ -6,8 +6,8 @@
     "difficulties": ["简单", "中等", "困难", "竞赛级"],
     "sources": ["历年高考", "名校模拟", "重点中学", "教育机构"],
     "tags": ["选择题", "填空题", "解答题", "真题", "模拟题", "专项训练"],
-    "backgroundImage": "https://your-cdn-domain.com/exams/background.jpg",
-    "backgroundOpacity": 0.08
+    "backgroundImage": "https://main.c5nb.icu/img/config/1.png",
+    "backgroundOpacity": 0.8
   },
   "exams": [
     {
@@ -60,31 +60,6 @@
       "answerIncluded": true,
       "recommendedTime": 90,
       "uploadDate": "2023-09-20"
-    },
-    {
-      "id": "test-2023-002",
-      "name": "名称测试",
-      "description": "描述测试",
-      "subject": "化学",
-      "difficulty": "困难",
-      "views": 5420,
-      "downloads": 3321,
-      "source": "重点中学",
-      "fileUrl": "https://main.c5nb.icu/ExamDownloadPage/testfiles/生物整理本目录.pdf",
-      "fileSize": 4123456,
-      "fileFormat": "pdf",
-      "previewImages": [
-        "https://main.c5nb.icu/ExamDownloadPage/testfiles/12345.png"
-      ],
-      "tags": ["测试", "专题训练", "化学", "高三复习"],
-      "year": 2023,
-      "grade": "高三",
-      "author": "喻等婉",
-      "pageCount": 15,
-      "hasAnswer": true,
-      "answerIncluded": true,
-      "recommendedTime": 110,
-      "uploadDate": "2023-10-12"
     }
   ]
 }
