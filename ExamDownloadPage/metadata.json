@@ -1,14 +1,5 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2024-01-20T10:00:00Z",
-  "config": {
-    "subjects": ["数学", "英语", "物理", "化学", "生物", "语文"],
-    "difficulties": ["简单", "中等", "困难", "竞赛级"],
-    "sources": ["历年高考", "名校模拟", "重点中学", "教育机构"],
-    "tags": ["选择题", "填空题", "解答题", "真题", "模拟题", "专项训练"],
-    "backgroundImage": "https://main.c5nb.icu/img/config/1.png",
-    "backgroundOpacity": 0.8
-  },
   "exams": [
     {
       "id": "math-2023-001",
@@ -43,8 +34,7 @@
       "subject": "英语",
       "difficulty": "中等",
       "views": 8450,
-      "downloads": 5230,
-      "source": "教育机构",
+      "source": "",
       "fileUrl": "https://your-cdn-domain.com/exams/files/english-reading-practice.pdf",
       "fileSize": 3245678,
       "fileFormat": "pdf",
@@ -54,7 +44,7 @@
       "tags": ["阅读理解", "专项训练", "词汇积累", "英语"],
       "year": 2023,
       "grade": "高二",
-      "author": "新东方",
+      "author": "测试",
       "pageCount": 8,
       "hasAnswer": true,
       "answerIncluded": true,

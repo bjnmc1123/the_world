@@ -1,4 +1,4 @@
-/* 试卷下载平台样式 - 修复版 */
+/* 试卷下载平台样式 - 最终修复版 */
 
 /* 全局变量 */
 :root {
@@ -17,16 +17,31 @@
     --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     --shadow-lg: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     --transition: all 0.2s ease;
-    --background-opacity: 0.08; /* 默认背景透明度 */
+    --background-opacity: 0.08;
+    --background-image: none;
+    --footer-bg-color: rgba(26, 26, 26, 0.5); /* 默认值 */
+    --footer-text-color: #ffffff;
+    --navbar-bg-color: rgba(74, 108, 247, 1); /* 默认值 */
+    --splash-bg-color: #4a6cf7;
+    --splash-text-color: #ffffff;
+    --splash-spiral-color: #ffffff;
 }
 
-/* 基础样式 */
+/* 基础样式 - 修复布局问题 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Segoe UI', Helvetica, Arial, sans-serif;
     color: var(--dark);
     line-height: 1.6;
     background-color: var(--light);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     position: relative;
 }
 
@@ -38,24 +53,47 @@ body.has-background::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--background-image, none);
+    background-image: var(--background-image);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    opacity: var(--background-opacity, 0.08);
+    opacity: var(--background-opacity);
     z-index: -1;
     pointer-events: none;
 }
 
-/* 导航栏 */
+/* 主应用容器 - 修复布局 */
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    flex: 1;
+}
+
+/* 主内容区 - 确保撑开内容 */
+main.container {
+    flex: 1 0 auto;
+    padding-bottom: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* 导航栏 - 使用CSS变量 */
 .navbar {
     padding: 0.75rem 0;
     box-shadow: var(--shadow);
+    background-color: var(--navbar-bg-color) !important;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
 }
 
 .navbar-brand {
     font-weight: 600;
     font-size: 1.25rem;
+    color: white !important;
 }
 
 .navbar-brand .small {
@@ -65,11 +103,8 @@ body.has-background::before {
     margin-left: 0.25rem;
 }
 
-/* 主内容区 */
-.container {
-    max-width: 1200px;
-    position: relative;
-    z-index: 1;
+.navbar-text {
+    color: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* 搜索和筛选区域 */
@@ -122,6 +157,7 @@ body.has-background::before {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 @media (max-width: 768px) {
@@ -357,16 +393,18 @@ body.modal-open {
 
 .modal-header {
     padding: 1.5rem 1.5rem 0.5rem;
+    border-bottom: 1px solid var(--gray-light);
 }
 
 .modal-body {
-    padding: 0 1.5rem;
-    max-height: 60vh;
+    padding: 1.5rem;
+    max-height: 70vh;
     overflow-y: auto;
 }
 
 .modal-footer {
-    padding: 0.5rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--gray-light);
 }
 
 /* 模态框图片预览 */
@@ -420,6 +458,9 @@ body.modal-open {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    padding: 0.5rem;
+    background: var(--light);
+    border-radius: 6px;
 }
 
 .detail-icon {
@@ -438,6 +479,9 @@ body.modal-open {
 .modal-description {
     line-height: 1.6;
     color: var(--gray);
+    background: var(--light);
+    padding: 1rem;
+    border-radius: 6px;
 }
 
 /* 分页 */
@@ -456,10 +500,175 @@ body.modal-open {
     color: white;
 }
 
-/* 页脚 */
+/* 页脚 - 修复透明度问题 */
 footer {
+    background-color: var(--footer-bg-color) !important;
+    color: var(--footer-text-color) !important;
+    border-top: none !important;
+    padding: 2rem 0 !important;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
     margin-top: auto;
-    background-color: rgba(255, 255, 255, 0.95) !important;
+    flex-shrink: 0;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer h5 {
+    color: var(--footer-text-color) !important;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* 页脚内容样式修复 */
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+footer .footer-content p {
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+}
+
+/* 第一行样式 */
+footer .footer-content p.first-line {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 其他行样式 - 移除间隔 */
+footer .footer-content p.other-line {
+    font-size: 0.85rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* 移除所有分割线 */
+footer .footer-divider {
+    display: none !important;
+}
+
+/* 开屏特效 - 改为可配置 */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--splash-bg-color);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.splash-content {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-logo {
+    font-size: 3rem;
+    color: var(--splash-text-color);
+    z-index: 2;
+    opacity: 0;
+    animation: fadeInLogo 1s ease 0.5s forwards;
+}
+
+.spiral-container {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+.spiral {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    animation: spiralOut 1.5s ease-out forwards;
+}
+
+.spiral:nth-child(1) {
+    border-top-color: var(--splash-spiral-color);
+    animation-delay: 0.1s;
+}
+
+.spiral:nth-child(2) {
+    border-right-color: var(--splash-spiral-color);
+    animation-delay: 0.2s;
+}
+
+.spiral:nth-child(3) {
+    border-bottom-color: var(--splash-spiral-color);
+    animation-delay: 0.3s;
+}
+
+.spiral:nth-child(4) {
+    border-left-color: var(--splash-spiral-color);
+    animation-delay: 0.4s;
+}
+
+@keyframes spiralOut {
+    0% {
+        transform: scale(0.1) rotate(0deg);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInLogo {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOutSplash {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 /* 响应式调整 */
@@ -470,6 +679,15 @@ footer {
     
     .exam-image-container {
         height: 160px;
+    }
+    
+    .splash-content {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .splash-logo {
+        font-size: 2.5rem;
     }
 }
 
@@ -494,6 +712,27 @@ footer {
         width: 100%;
         height: 200px;
     }
+    
+    .modal-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    footer {
+        padding: 1.5rem 0 !important;
+    }
+    
+    footer .footer-content p {
+        font-size: 0.85rem;
+    }
+    
+    .splash-content {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .splash-logo {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -508,6 +747,31 @@ footer {
     
     .modal-dialog {
         margin: 0.5rem;
+    }
+    
+    .modal-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    footer {
+        padding: 1.25rem 0 !important;
+    }
+    
+    footer h5 {
+        font-size: 1.1rem;
+    }
+    
+    footer .footer-content p {
+        font-size: 0.8rem;
+    }
+    
+    .splash-content {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .splash-logo {
+        font-size: 1.8rem;
     }
 }
 

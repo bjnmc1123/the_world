@@ -1,20 +1,19 @@
 /**
- * 试卷下载平台 - 主逻辑（修复版）
+ * 试卷下载平台 - 最终修复版
  */
 
-// 全局配置
+// 全局配置常量
 const CONFIG = {
-    // 使用相对路径，避免上线后路径问题
-    JSON_URL: 'metadata.json',  // 改为相对路径
-    ITEMS_PER_PAGE: 12,
-    FAVORITES_KEY: 'exam_favorites_v3',
-    CDN_BASE: 'https://your-cdn-domain.com/exams'
+    CONFIG_URL: 'config.json',
+    DATA_URL: 'metadata.json',
+    FAVORITES_KEY: 'exam_favorites_v5'
 };
 
 // 状态管理类
 class ExamPlatform {
     constructor() {
         this.state = {
+            config: null,
             exams: [],
             filteredExams: [],
             displayedExams: [],
@@ -33,10 +32,15 @@ class ExamPlatform {
             },
             currentExam: null,
             isLoading: true,
-            error: null
+            error: null,
+            examStats: {
+                totalCount: 0,
+                subjects: new Set(),
+                difficulties: new Set(),
+                sources: new Set()
+            }
         };
         
-        // 存储模态框实例
         this.modalInstance = null;
         
         this.init();
@@ -44,17 +48,20 @@ class ExamPlatform {
     
     async init() {
         try {
-            // 显示主应用，隐藏加载状态
+            // 隐藏初始加载状态，显示主应用
             this.hideLoading();
             
-            // 设置当前年份
-            this.setCurrentYear();
+            // 加载配置
+            await this.loadConfig();
             
-            // 加载用户收藏
-            this.loadFavorites();
+            // 启动开屏特效
+            await this.showSplashScreen();
             
             // 加载试卷数据
             await this.loadExams();
+            
+            // 加载用户收藏
+            this.loadFavorites();
             
             // 初始化UI
             this.initUI();
@@ -68,6 +75,12 @@ class ExamPlatform {
             // 渲染页面
             this.render();
             
+            // 确保主应用完全显示
+            this.ensureAppDisplayed();
+            
+            // 确保布局正确
+            this.ensureLayout();
+            
         } catch (error) {
             console.error('初始化失败:', error);
             this.state.error = error.message;
@@ -75,20 +88,386 @@ class ExamPlatform {
         }
     }
     
-    hideLoading() {
-        const loadingEl = document.getElementById('initial-loading');
-        const appEl = document.getElementById('app');
+    // 新增：确保布局正确，页脚在底部
+    ensureLayout() {
+        // 设置body的最小高度
+        document.body.style.minHeight = '100vh';
+        document.body.style.display = 'flex';
+        document.body.style.flexDirection = 'column';
         
-        if (loadingEl) loadingEl.style.display = 'none';
-        if (appEl) appEl.style.display = 'block';
+        // 确保应用容器撑开
+        const appEl = document.getElementById('app');
+        if (appEl) {
+            appEl.style.flex = '1';
+            appEl.style.display = 'flex';
+            appEl.style.flexDirection = 'column';
+        }
+        
+        // 确保主内容区撑开
+        const mainEl = document.querySelector('main.container');
+        if (mainEl) {
+            mainEl.style.flex = '1 0 auto';
+        }
+        
+        // 确保页脚在底部
+        const footerEl = document.querySelector('footer');
+        if (footerEl) {
+            footerEl.style.marginTop = 'auto';
+        }
+    }
+    
+    async showSplashScreen() {
+        return new Promise((resolve) => {
+            const splashConfig = this.state.config?.splashScreen;
+            
+            // 检查是否启用开屏特效
+            if (!splashConfig || !splashConfig.enabled) {
+                resolve();
+                return;
+            }
+            
+            // 确保主应用容器被隐藏
+            const appEl = document.getElementById('app');
+            if (appEl) {
+                appEl.style.display = 'none';
+            }
+            
+            // 创建开屏特效元素
+            const splashScreen = document.createElement('div');
+            splashScreen.className = 'splash-screen';
+            splashScreen.style.backgroundColor = splashConfig.backgroundColor || '#4a6cf7';
+            
+            splashScreen.innerHTML = `
+                <div class="splash-content">
+                    <div class="spiral-container">
+                        <div class="spiral" style="border-top-color: ${splashConfig.spiralColor || '#ffffff'}"></div>
+                        <div class="spiral" style="border-right-color: ${splashConfig.spiralColor || '#ffffff'}"></div>
+                        <div class="spiral" style="border-bottom-color: ${splashConfig.spiralColor || '#ffffff'}"></div>
+                        <div class="spiral" style="border-left-color: ${splashConfig.spiralColor || '#ffffff'}"></div>
+                    </div>
+                    <div class="splash-logo" style="color: ${splashConfig.textColor || '#ffffff'}">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(splashScreen);
+            
+            // 设置开屏特效持续时间
+            const duration = splashConfig.duration || 1500;
+            
+            // 开屏特效结束后移除
+            setTimeout(() => {
+                splashScreen.classList.add('hidden');
+                
+                // 完全移除元素
+                setTimeout(() => {
+                    if (splashScreen.parentNode) {
+                        splashScreen.parentNode.removeChild(splashScreen);
+                    }
+                    resolve();
+                }, 500);
+            }, duration);
+        });
+    }
+    
+    ensureAppDisplayed() {
+        const appEl = document.getElementById('app');
+        if (appEl) {
+            appEl.style.display = 'block';
+            appEl.style.opacity = '1';
+        }
+    }
+    
+    async loadConfig() {
+        try {
+            const response = await fetch(CONFIG.CONFIG_URL);
+            if (!response.ok) {
+                throw new Error(`无法加载配置文件: ${response.status}`);
+            }
+            this.state.config = await response.json();
+            
+            // 应用页面配置
+            this.applyPageConfig();
+            
+        } catch (error) {
+            console.error('加载配置失败:', error.message);
+            this.state.config = this.getDefaultConfig();
+            this.applyPageConfig();
+            this.showWarning('正在使用默认配置，请检查config.json文件');
+        }
+    }
+    
+    getDefaultConfig() {
+        return {
+            pageTitle: '试卷资源中心',
+            siteName: '试卷资源中心',
+            header: {
+                title: '试卷资源中心',
+                subtitle: '点我返回主页',
+                icon: 'fas fa-graduation-cap'
+            },
+            mainSection: {
+                title: '试卷资源下载',
+                description: '精选优质试卷，助力学习进步',
+                emptyState: {
+                    icon: 'fas fa-file-search',
+                    title: '未找到相关试卷',
+                    message: '尝试调整搜索关键词或筛选条件',
+                    buttonText: '重置所有筛选'
+                }
+            },
+            footer: {
+                backgroundColor: '#1a1a1a',
+                backgroundOpacity: 0.5,
+                textColor: '#ffffff',
+                copyrightText: '© 2024 试卷资源中心',
+                additionalText: '致力于提供优质教育资源的平台，所有资源仅供学习交流使用。',
+                contactInfo: '',
+                disclaimer: ''
+            },
+            uiConfig: {
+                itemsPerPage: 12,
+                backgroundImage: 'none',
+                backgroundOpacity: 0.08,
+                navbar: {
+                    backgroundColor: '#4a6cf7',
+                    backgroundOpacity: 1
+                }
+            },
+            quickFilters: [
+                { text: '全部', filter: 'all' },
+                { text: '数学', filter: 'subject:数学' },
+                { text: '英语', filter: 'subject:英语' },
+                { text: '物理', filter: 'subject:物理' },
+                { text: '化学', filter: 'subject:化学' }
+            ],
+            availableGrades: ['高一', '高二', '高三'],
+            splashScreen: {
+                enabled: true,
+                duration: 1500,
+                backgroundColor: '#4a6cf7',
+                textColor: '#ffffff',
+                spiralColor: '#ffffff'
+            }
+        };
+    }
+    
+    applyPageConfig() {
+        const config = this.state.config;
+        
+        // 设置页面标题
+        document.title = config.pageTitle || '试卷资源中心';
+        
+        // 更新导航栏
+        const navbarBrand = document.querySelector('.navbar-brand');
+        if (navbarBrand) {
+            navbarBrand.innerHTML = `
+                <i class="${config.header.icon || 'fas fa-graduation-cap'} me-2"></i>
+                ${config.header.title || '试卷资源中心'} 
+                <span class="small fw-normal">${config.header.subtitle || ''}</span>
+            `;
+        }
+        
+        // 更新主标题
+        const mainTitle = document.querySelector('main h1');
+        const mainDesc = document.querySelector('main .text-muted');
+        if (mainTitle && config.mainSection.title) {
+            mainTitle.textContent = config.mainSection.title;
+        }
+        if (mainDesc && config.mainSection.description) {
+            mainDesc.textContent = config.mainSection.description;
+        }
+        
+        // 更新快速筛选按钮
+        this.initQuickFilters();
+        
+        // 更新空状态
+        const emptyStateEl = document.getElementById('empty-state');
+        if (emptyStateEl && config.mainSection.emptyState) {
+            const emptyState = config.mainSection.emptyState;
+            emptyStateEl.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="${emptyState.icon} fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">${emptyState.title}</h4>
+                    <p class="text-muted">${emptyState.message}</p>
+                    <button class="btn btn-outline-primary" id="reset-all-filters">${emptyState.buttonText}</button>
+                </div>
+            `;
+        }
+        
+        // 更新页脚
+        this.updateFooter();
+        
+        // 设置背景
+        this.setBackground();
+        
+        // 设置导航栏样式
+        this.setNavbarStyle();
+        
+        // 设置开屏动画样式
+        this.setSplashScreenStyle();
+    }
+    
+    setNavbarStyle() {
+        const navbarConfig = this.state.config?.uiConfig?.navbar;
+        if (!navbarConfig) return;
+        
+        // 将十六进制颜色转换为RGBA
+        const rgb = this.hexToRgb(navbarConfig.backgroundColor || '#4a6cf7');
+        const opacity = navbarConfig.backgroundOpacity || 1;
+        
+        // 设置完整的rgba颜色到CSS变量
+        const rgbaColor = `rgba(${rgb}, ${opacity})`;
+        document.documentElement.style.setProperty('--navbar-bg-color', rgbaColor);
+        
+        // 直接设置导航栏背景色，使用 !important
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            // 使用 setProperty 来添加 !important
+            navbar.style.setProperty('background-color', rgbaColor, 'important');
+        }
+    }
+    
+    setSplashScreenStyle() {
+        const splashConfig = this.state.config?.splashScreen;
+        if (!splashConfig) return;
+        
+        // 设置开屏动画的CSS变量
+        document.documentElement.style.setProperty('--splash-bg-color', splashConfig.backgroundColor || '#4a6cf7');
+        document.documentElement.style.setProperty('--splash-text-color', splashConfig.textColor || '#ffffff');
+        document.documentElement.style.setProperty('--splash-spiral-color', splashConfig.spiralColor || '#ffffff');
+    }
+    
+    updateFooter() {
+        const config = this.state.config?.footer;
+        if (!config) return;
+        
+        // 获取页脚元素
+        const footer = document.querySelector('footer');
+        const footerRow = document.querySelector('footer .row');
+        
+        if (!footer || !footerRow) return;
+        
+        // 清空现有的内容
+        footerRow.innerHTML = '';
+        
+        // 计算透明度并设置完整的RGBA颜色
+        const opacity = config.backgroundOpacity || 0.5;
+        const rgb = this.hexToRgb(config.backgroundColor || '#1a1a1a');
+        
+        // 设置完整的rgba颜色到CSS变量
+        const rgbaColor = `rgba(${rgb}, ${opacity})`;
+        document.documentElement.style.setProperty('--footer-bg-color', rgbaColor);
+        document.documentElement.style.setProperty('--footer-text-color', config.textColor || '#ffffff');
+        
+        // 直接设置页脚背景色，使用 !important
+        footer.style.setProperty('background-color', rgbaColor, 'important');
+        footer.style.color = config.textColor || '#ffffff';
+        footer.style.marginTop = 'auto';
+        
+        // 收集所有可用的文本内容
+        const textItems = [];
+        
+        // 版权信息（包含手动填写的时间，直接使用copyrightText）
+        const copyrightText = config.copyrightText || '© 2024 试卷资源中心';
+        if (copyrightText.trim()) {
+            textItems.push(copyrightText);
+        }
+        
+        // 附加文本
+        if (config.additionalText && config.additionalText.trim()) {
+            textItems.push(config.additionalText);
+        }
+        
+        // 联系信息
+        if (config.contactInfo && config.contactInfo.trim()) {
+            textItems.push(config.contactInfo);
+        }
+        
+        // 免责声明
+        if (config.disclaimer && config.disclaimer.trim()) {
+            textItems.push(config.disclaimer);
+        }
+        
+        // 创建页脚内容容器
+        const footerContent = document.createElement('div');
+        footerContent.className = 'footer-content';
+        
+        // 添加文本项
+        textItems.forEach((text, index) => {
+            if (text.trim()) {
+                const p = document.createElement('p');
+                
+                // 第一行添加first-line类，其他行添加other-line类
+                if (index === 0) {
+                    p.className = 'first-line fw-medium';
+                } else {
+                    p.className = 'other-line';
+                }
+                
+                p.style.color = config.textColor || '#ffffff';
+                p.innerHTML = text;
+                footerContent.appendChild(p);
+            }
+        });
+        
+        // 添加到页脚行
+        footerRow.appendChild(footerContent);
+    }
+    
+    hexToRgb(hex) {
+        // 移除#号
+        hex = hex.replace('#', '');
+        
+        // 解析RGB值
+        let r, g, b;
+        
+        if (hex.length === 3) {
+            r = parseInt(hex[0] + hex[0], 16);
+            g = parseInt(hex[1] + hex[1], 16);
+            b = parseInt(hex[2] + hex[2], 16);
+        } else if (hex.length === 6) {
+            r = parseInt(hex.substring(0, 2), 16);
+            g = parseInt(hex.substring(2, 4), 16);
+            b = parseInt(hex.substring(4, 6), 16);
+        } else {
+            return '26, 26, 26'; // 默认值
+        }
+        
+        return `${r}, ${g}, ${b}`;
+    }
+    
+    setBackground() {
+        const uiConfig = this.state.config?.uiConfig;
+        if (uiConfig?.backgroundImage && uiConfig.backgroundImage !== 'none') {
+            document.documentElement.style.setProperty(
+                '--background-image', 
+                `url('${uiConfig.backgroundImage}')`
+            );
+            
+            const opacity = uiConfig.backgroundOpacity || 0.08;
+            document.documentElement.style.setProperty('--background-opacity', opacity.toString());
+            document.body.classList.add('has-background');
+        }
+    }
+    
+    initQuickFilters() {
+        const quickFilters = this.state.config?.quickFilters;
+        const container = document.getElementById('quick-filters');
+        if (!container || !quickFilters) return;
+        
+        container.innerHTML = quickFilters.map(filter => `
+            <button type="button" class="btn btn-sm btn-outline-primary ${filter.filter === 'all' ? 'active' : ''}" 
+                    data-filter="${filter.filter}">${filter.text}</button>
+        `).join('');
     }
     
     async loadExams() {
         try {
-            console.log('正在加载试卷数据...');
+            console.log('正在从metadata.json加载试卷数据...');
             
-            // 使用相对路径加载JSON
-            const response = await fetch(CONFIG.JSON_URL, {
+            const response = await fetch(CONFIG.DATA_URL, {
                 cache: 'no-cache',
                 headers: {
                     'Content-Type': 'application/json'
@@ -96,160 +475,79 @@ class ExamPlatform {
             });
             
             if (!response.ok) {
-                throw new Error(`无法加载数据文件: ${response.status}`);
+                throw new Error(`无法加载数据文件: ${response.status} ${response.statusText}`);
             }
             
             const data = await response.json();
             
-            // 验证数据格式
             if (!data || !Array.isArray(data.exams)) {
-                throw new Error('数据格式不正确');
+                throw new Error('数据格式不正确：metadata.json中缺少exams数组');
+            }
+            
+            if (data.exams.length === 0) {
+                this.showWarning('metadata.json中没有试卷数据，请添加试卷到exams数组中');
             }
             
             this.state.exams = data.exams;
-            console.log(`成功加载 ${this.state.exams.length} 份试卷`);
+            this.state.examStats.totalCount = data.exams.length;
             
-            // 设置背景图和透明度
-            this.setBackground(data);
+            // 收集统计数据
+            this.collectExamStats();
+            
+            // 更新总数显示
+            this.updateTotalCount();
+            
+            console.log(`成功从metadata.json加载 ${this.state.exams.length} 份试卷`);
             
         } catch (error) {
-            console.warn('加载数据失败，使用示例数据:', error.message);
+            console.error('加载试卷数据失败:', error.message);
+            this.state.exams = [];
+            this.state.examStats.totalCount = 0;
+            this.collectExamStats();
+            this.updateTotalCount();
             
-            // 使用示例数据
-            this.state.exams = this.getSampleData();
+            // 显示详细错误信息
+            this.showError(`
+                <h5>无法加载试卷数据</h5>
+                <p>错误信息: ${error.message}</p>
+                <p>请检查：</p>
+                <ol>
+                    <li>metadata.json文件是否存在</li>
+                    <li>metadata.json格式是否正确（必须包含exams数组）</li>
+                    <li>服务器是否允许访问metadata.json文件</li>
+                </ol>
+                <div class="mt-3">
+                    <button class="btn btn-primary me-2" onclick="location.reload()">重新加载</button>
+                    <a href="metadata.json" target="_blank" class="btn btn-outline-secondary">查看metadata.json</a>
+                </div>
+            `);
             
-            // 显示警告
-            this.showWarning('正在使用示例数据演示，请检查metadata.json文件');
+            // 抛出错误，停止后续初始化
+            throw error;
         }
     }
     
-    setBackground(data) {
-        if (data.config && data.config.backgroundImage) {
-            // 设置CSS变量
-            document.documentElement.style.setProperty('--background-image', `url('${data.config.backgroundImage}')`);
-            
-            // 设置背景透明度，默认为0.08
-            const opacity = data.config.backgroundOpacity || 0.08;
-            document.documentElement.style.setProperty('--background-opacity', opacity.toString());
-            
-            document.body.classList.add('has-background');
-        }
+    collectExamStats() {
+        const stats = this.state.examStats;
+        stats.subjects.clear();
+        stats.difficulties.clear();
+        stats.sources.clear();
+        
+        this.state.exams.forEach(exam => {
+            if (exam.subject) stats.subjects.add(exam.subject);
+            if (exam.difficulty) stats.difficulties.add(exam.difficulty);
+            if (exam.source) stats.sources.add(exam.source);
+        });
     }
     
-    getSampleData() {
-        return [
-            {
-                id: 'sample-1',
-                name: '2024年高考数学模拟试卷',
-                description: '包含函数、几何、概率统计等综合题目，适合高三复习',
-                subject: '数学',
-                difficulty: '中等',
-                views: 1234,
-                downloads: 856,
-                source: '名校模拟',
-                fileUrl: '#',
-                fileSize: 5123456,
-                fileFormat: 'pdf',
-                previewImages: [
-                    'https://via.placeholder.com/400x300/4a6cf7/ffffff?text=数学试卷预览'
-                ],
-                tags: ['模拟题', '综合卷', '高考'],
-                year: 2024,
-                grade: '高三',
-                author: '北京四中',
-                pageCount: 12,
-                hasAnswer: true,
-                answerIncluded: true,
-                recommendedTime: 120,
-                uploadDate: '2024-01-20'
-            },
-            {
-                id: 'sample-2',
-                name: '高中英语阅读理解专项训练',
-                description: '精选科技、文化、社会等多主题英语阅读文章',
-                subject: '英语',
-                difficulty: '中等',
-                views: 987,
-                downloads: 654,
-                source: '教育机构',
-                fileUrl: '#',
-                fileSize: 3245678,
-                fileFormat: 'pdf',
-                previewImages: [
-                    'https://via.placeholder.com/400x300/28a745/ffffff?text=英语阅读理解'
-                ],
-                tags: ['阅读理解', '专项训练', '词汇积累'],
-                year: 2024,
-                grade: '高二',
-                author: '新东方',
-                pageCount: 8,
-                hasAnswer: true,
-                answerIncluded: true,
-                recommendedTime: 90,
-                uploadDate: '2024-01-19'
-            },
-            {
-                id: 'sample-3',
-                name: '高中物理力学专题测试',
-                description: '涵盖牛顿力学、能量守恒、动量定理等核心知识点',
-                subject: '物理',
-                difficulty: '困难',
-                views: 632,
-                downloads: 412,
-                source: '重点中学',
-                fileUrl: '#',
-                fileSize: 2854321,
-                fileFormat: 'pdf',
-                previewImages: [
-                    'https://via.placeholder.com/400x300/ff6b6b/ffffff?text=物理力学测试'
-                ],
-                tags: ['力学', '专题测试', '物理核心'],
-                year: 2024,
-                grade: '高二',
-                author: '黄冈中学',
-                pageCount: 10,
-                hasAnswer: true,
-                answerIncluded: true,
-                recommendedTime: 100,
-                uploadDate: '2024-01-18'
-            },
-            {
-                id: 'sample-4',
-                name: '高中化学有机化学专题',
-                description: '包含烃类、醇、醛、酸等有机化合物的系统讲解和练习',
-                subject: '化学',
-                difficulty: '中等',
-                views: 542,
-                downloads: 321,
-                source: '重点中学',
-                fileUrl: '#',
-                fileSize: 4123456,
-                fileFormat: 'pdf',
-                previewImages: [
-                    'https://via.placeholder.com/400x300/17a2b8/ffffff?text=化学有机专题'
-                ],
-                tags: ['有机化学', '专题训练', '化学'],
-                year: 2024,
-                grade: '高三',
-                author: '华中师大一附中',
-                pageCount: 15,
-                hasAnswer: true,
-                answerIncluded: true,
-                recommendedTime: 110,
-                uploadDate: '2024-01-17'
-            }
-        ];
-    }
-    
-    setCurrentYear() {
-        const yearEl = document.getElementById('current-year');
-        if (yearEl) {
-            yearEl.textContent = new Date().getFullYear();
+    updateTotalCount() {
+        const totalEl = document.getElementById('total-count');
+        if (totalEl) {
+            totalEl.textContent = this.state.examStats.totalCount.toLocaleString();
         }
     }
     
     showWarning(message) {
-        // 创建一个警告提示
         const alertEl = document.createElement('div');
         alertEl.className = 'alert alert-warning alert-dismissible fade show mt-3';
         alertEl.innerHTML = `
@@ -271,15 +569,16 @@ class ExamPlatform {
         appEl.innerHTML = `
             <div class="container py-5">
                 <div class="alert alert-danger">
-                    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>加载失败</h4>
-                    <p>${message}</p>
-                    <hr>
-                    <button class="btn btn-danger" onclick="location.reload()">
-                        <i class="fas fa-redo me-1"></i>刷新页面
-                    </button>
+                    ${message}
                 </div>
             </div>
         `;
+        appEl.style.display = 'block';
+    }
+    
+    hideLoading() {
+        const loadingEl = document.getElementById('initial-loading');
+        if (loadingEl) loadingEl.style.display = 'none';
     }
     
     loadFavorites() {
@@ -344,26 +643,40 @@ class ExamPlatform {
     }
     
     initUI() {
-        // 初始化筛选选项
         this.initFilterOptions();
+        this.initGradeOptions();
     }
     
     initFilterOptions() {
         // 收集所有可能的选项
-        const subjects = new Set();
-        const difficulties = new Set();
-        const sources = new Set();
-        
-        this.state.exams.forEach(exam => {
-            subjects.add(exam.subject);
-            difficulties.add(exam.difficulty);
-            sources.add(exam.source);
-        });
+        const subjects = Array.from(this.state.examStats.subjects);
+        const difficulties = Array.from(this.state.examStats.difficulties);
+        const sources = Array.from(this.state.examStats.sources);
         
         // 更新筛选器选项
-        this.updateSelectOptions('filter-subject', Array.from(subjects));
-        this.updateSelectOptions('filter-difficulty', Array.from(difficulties));
-        this.updateSelectOptions('filter-source', Array.from(sources));
+        this.updateSelectOptions('filter-subject', subjects);
+        this.updateSelectOptions('filter-difficulty', difficulties);
+        this.updateSelectOptions('filter-source', sources);
+    }
+    
+    initGradeOptions() {
+        const gradeSelect = document.getElementById('filter-grade');
+        if (!gradeSelect) return;
+        
+        const availableGrades = this.state.config?.availableGrades || ['高一', '高二', '高三'];
+        
+        // 清空现有选项（保留第一个）
+        while (gradeSelect.options.length > 1) {
+            gradeSelect.remove(1);
+        }
+        
+        // 添加配置的年级选项
+        availableGrades.forEach(grade => {
+            const option = document.createElement('option');
+            option.value = grade;
+            option.textContent = grade;
+            gradeSelect.appendChild(option);
+        });
     }
     
     updateSelectOptions(selectId, options) {
@@ -459,8 +772,9 @@ class ExamPlatform {
     }
     
     updatePagination() {
+        const itemsPerPage = this.state.config?.uiConfig?.itemsPerPage || 12;
         const totalExams = this.state.filteredExams.length;
-        const totalPages = Math.ceil(totalExams / CONFIG.ITEMS_PER_PAGE);
+        const totalPages = Math.ceil(totalExams / itemsPerPage);
         
         this.state.pagination = {
             currentPage: 1,
@@ -491,9 +805,10 @@ class ExamPlatform {
         if (!gridEl) return;
         
         // 计算当前页显示的数据
+        const itemsPerPage = this.state.config?.uiConfig?.itemsPerPage || 12;
         const { currentPage, totalPages } = this.state.pagination;
-        const startIndex = (currentPage - 1) * CONFIG.ITEMS_PER_PAGE;
-        const endIndex = startIndex + CONFIG.ITEMS_PER_PAGE;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
         this.state.displayedExams = this.state.filteredExams.slice(startIndex, endIndex);
         
         // 显示/隐藏空状态
@@ -520,7 +835,7 @@ class ExamPlatform {
     
     createExamCard(exam, index) {
         const isFavorite = this.state.favorites.has(exam.id);
-        const fileSizeMB = (exam.fileSize / 1024 / 1024).toFixed(1);
+        const fileSizeMB = exam.fileSize ? (exam.fileSize / 1024 / 1024).toFixed(1) : '0';
         const previewImage = exam.previewImages && exam.previewImages[0] ? exam.previewImages[0] : '';
         
         return `
@@ -552,7 +867,7 @@ class ExamPlatform {
                     <div class="exam-meta">
                         <div class="exam-meta-item">
                             <i class="fas fa-university"></i>
-                            <span>${exam.source}</span>
+                            <span>${exam.source || '未知来源'}</span>
                         </div>
                         <div class="exam-meta-item">
                             <i class="fas fa-download"></i>
@@ -701,12 +1016,45 @@ class ExamPlatform {
         if (!modalTitle || !modalBody) return;
         
         const isFavorite = this.state.favorites.has(exam.id);
-        const fileSizeMB = (exam.fileSize / 1024 / 1024).toFixed(2);
+        const fileSizeMB = exam.fileSize ? (exam.fileSize / 1024 / 1024).toFixed(2) : '0';
         
         // 更新标题
         modalTitle.textContent = exam.name;
         
-        // 构建模态框内容
+        // 构建模态框内容 - 动态显示存在的字段
+        const detailItems = [];
+        
+        // 动态添加字段
+        const fieldMap = [
+            { key: 'subject', icon: 'fas fa-book', label: '科目', value: exam.subject },
+            { key: 'difficulty', icon: 'fas fa-chart-line', label: '难度', value: exam.difficulty },
+            { key: 'grade', icon: 'fas fa-user-graduate', label: '年级', value: exam.grade || '通用' },
+            { key: 'year', icon: 'fas fa-calendar-alt', label: '年份', value: exam.year },
+            { key: 'source', icon: 'fas fa-university', label: '来源', value: exam.source },
+            { key: 'author', icon: 'fas fa-user-edit', label: '作者', value: exam.author },
+            { key: 'pageCount', icon: 'fas fa-file-alt', label: '页数', value: exam.pageCount || '未知' },
+            { key: 'recommendedTime', icon: 'fas fa-clock', label: '建议用时', value: exam.recommendedTime ? `${exam.recommendedTime}分钟` : '未知' },
+            { key: 'downloads', icon: 'fas fa-download', label: '下载次数', value: exam.downloads?.toLocaleString() },
+            { key: 'fileFormat', icon: 'fas fa-file', label: '文件格式', value: exam.fileFormat?.toUpperCase() },
+            { key: 'fileSize', icon: 'fas fa-weight', label: '文件大小', value: `${fileSizeMB} MB` },
+            { key: 'uploadDate', icon: 'fas fa-calendar-plus', label: '上传日期', value: exam.uploadDate },
+            { key: 'hasAnswer', icon: 'fas fa-check-circle', label: '包含答案', value: exam.hasAnswer ? '是' : '否' }
+        ];
+        
+        fieldMap.forEach(field => {
+            if (field.value !== undefined && field.value !== null && field.value !== '') {
+                detailItems.push(`
+                    <div class="detail-item">
+                        <i class="${field.icon} detail-icon"></i>
+                        <div>
+                            <small class="text-muted d-block">${field.label}</small>
+                            <strong>${field.value}</strong>
+                        </div>
+                    </div>
+                `);
+            }
+        });
+        
         modalBody.innerHTML = `
             <div class="modal-images">
                 ${exam.previewImages && exam.previewImages.length > 0 ? 
@@ -724,90 +1072,14 @@ class ExamPlatform {
             </div>
             
             <div class="modal-details-grid">
-                <div class="detail-item">
-                    <i class="fas fa-book detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">科目</small>
-                        <strong>${exam.subject}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-chart-line detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">难度</small>
-                        <strong>${exam.difficulty}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-user-graduate detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">年级</small>
-                        <strong>${exam.grade || '通用'}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-calendar-alt detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">年份</small>
-                        <strong>${exam.year}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-university detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">来源</small>
-                        <strong>${exam.source}</strong>
-                    </div>
-                </div>
-                ${exam.author ? `
-                    <div class="detail-item">
-                        <i class="fas fa-user-edit detail-icon"></i>
-                        <div>
-                            <small class="text-muted d-block">作者</small>
-                            <strong>${exam.author}</strong>
-                        </div>
-                    </div>
-                ` : ''}
-                <div class="detail-item">
-                    <i class="fas fa-file-alt detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">页数</small>
-                        <strong>${exam.pageCount || '未知'}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-clock detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">建议用时</small>
-                        <strong>${exam.recommendedTime || '未知'}分钟</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-download detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">下载次数</small>
-                        <strong>${exam.downloads.toLocaleString()}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-file detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">文件格式</small>
-                        <strong>${exam.fileFormat.toUpperCase()}</strong>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-weight detail-icon"></i>
-                    <div>
-                        <small class="text-muted d-block">文件大小</small>
-                        <strong>${fileSizeMB} MB</strong>
-                    </div>
-                </div>
+                ${detailItems.join('')}
             </div>
             
-            <div class="modal-tags">
-                ${exam.tags.map(tag => `<span class="badge bg-light text-dark border">${tag}</span>`).join('')}
-            </div>
+            ${exam.tags && exam.tags.length > 0 ? `
+                <div class="modal-tags">
+                    ${exam.tags.map(tag => `<span class="badge bg-light text-dark border">${tag}</span>`).join('')}
+                </div>
+            ` : ''}
             
             <div class="modal-description">
                 <h6 class="mb-2">试卷描述</h6>
@@ -858,26 +1130,39 @@ class ExamPlatform {
         const shareUrl = `${window.location.origin}${window.location.pathname}?exam=${exam.id}`;
         
         // 复制到剪贴板
-        navigator.clipboard.writeText(shareUrl).then(() => {
-            this.showToast('链接已复制到剪贴板');
-        }).catch(err => {
-            console.error('复制失败:', err);
-            
-            // 降级方案
-            const textArea = document.createElement('textarea');
-            textArea.value = shareUrl;
-            document.body.appendChild(textArea);
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareUrl).then(() => {
                 this.showToast('链接已复制到剪贴板');
-            } catch (err) {
-                alert('复制失败，请手动复制链接: ' + shareUrl);
+            }).catch(err => {
+                this.fallbackCopyToClipboard(shareUrl);
+            });
+        } else {
+            this.fallbackCopyToClipboard(shareUrl);
+        }
+    }
+    
+    fallbackCopyToClipboard(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                this.showToast('链接已复制到剪贴板');
+            } else {
+                alert('复制失败，请手动复制链接: ' + text);
             }
-            
-            document.body.removeChild(textArea);
-        });
+        } catch (err) {
+            alert('复制失败，请手动复制链接: ' + text);
+        }
+        
+        document.body.removeChild(textArea);
     }
     
     downloadExam(exam) {
