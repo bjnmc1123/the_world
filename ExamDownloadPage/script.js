@@ -1,12 +1,13 @@
 /**
- * 试卷下载平台 - 主逻辑（修复样式版）
+ * 试卷下载平台 - 主逻辑（修复版）
  */
 
 // 全局配置
 const CONFIG = {
-    JSON_URL: './metadata.json',
+    // 使用相对路径，避免上线后路径问题
+    JSON_URL: 'metadata.json',  // 改为相对路径
     ITEMS_PER_PAGE: 12,
-    FAVORITES_KEY: 'exam_favorites_v2',
+    FAVORITES_KEY: 'exam_favorites_v3',
     CDN_BASE: 'https://your-cdn-domain.com/exams'
 };
 
@@ -34,6 +35,9 @@ class ExamPlatform {
             isLoading: true,
             error: null
         };
+        
+        // 存储模态框实例
+        this.modalInstance = null;
         
         this.init();
     }
@@ -83,6 +87,7 @@ class ExamPlatform {
         try {
             console.log('正在加载试卷数据...');
             
+            // 使用相对路径加载JSON
             const response = await fetch(CONFIG.JSON_URL, {
                 cache: 'no-cache',
                 headers: {
@@ -91,7 +96,7 @@ class ExamPlatform {
             });
             
             if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                throw new Error(`无法加载数据文件: ${response.status}`);
             }
             
             const data = await response.json();
@@ -104,8 +109,8 @@ class ExamPlatform {
             this.state.exams = data.exams;
             console.log(`成功加载 ${this.state.exams.length} 份试卷`);
             
-            // 更新页面统计
-            this.updateStats(data);
+            // 设置背景图和透明度
+            this.setBackground(data);
             
         } catch (error) {
             console.warn('加载数据失败，使用示例数据:', error.message);
@@ -115,6 +120,19 @@ class ExamPlatform {
             
             // 显示警告
             this.showWarning('正在使用示例数据演示，请检查metadata.json文件');
+        }
+    }
+    
+    setBackground(data) {
+        if (data.config && data.config.backgroundImage) {
+            // 设置CSS变量
+            document.documentElement.style.setProperty('--background-image', `url('${data.config.backgroundImage}')`);
+            
+            // 设置背景透明度，默认为0.08
+            const opacity = data.config.backgroundOpacity || 0.08;
+            document.documentElement.style.setProperty('--background-opacity', opacity.toString());
+            
+            document.body.classList.add('has-background');
         }
     }
     
@@ -221,23 +239,6 @@ class ExamPlatform {
                 uploadDate: '2024-01-17'
             }
         ];
-    }
-    
-    updateStats(data) {
-        // 更新试卷总数
-        const totalCount = document.getElementById('total-count');
-        if (totalCount) {
-            totalCount.textContent = this.state.exams.length;
-        }
-        
-        // 更新最后更新时间
-        const lastUpdate = document.getElementById('last-update');
-        if (lastUpdate) {
-            const updateDate = data.lastUpdated ? 
-                new Date(data.lastUpdated).toLocaleDateString('zh-CN') : 
-                new Date().toLocaleDateString('zh-CN');
-            lastUpdate.textContent = `最后更新: ${updateDate}`;
-        }
     }
     
     setCurrentYear() {
@@ -658,9 +659,39 @@ class ExamPlatform {
         // 更新模态框内容
         this.updateModalContent(exam);
         
+        // 获取模态框元素
+        const modalElement = document.getElementById('exam-modal');
+        if (!modalElement) return;
+        
+        // 修复模态框关闭问题：先清除现有的模态框实例
+        if (this.modalInstance) {
+            this.modalInstance.hide();
+            this.modalInstance.dispose();
+        }
+        
+        // 创建新的模态框实例
+        this.modalInstance = new bootstrap.Modal(modalElement, {
+            backdrop: true,
+            keyboard: true
+        });
+        
+        // 添加事件监听器来清理模态框关闭时的状态
+        modalElement.addEventListener('hidden.bs.modal', () => {
+            // 清理状态
+            this.state.currentExam = null;
+            
+            // 清理背景遮罩
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            backdrops.forEach(backdrop => backdrop.remove());
+            
+            // 恢复body样式
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '0';
+        });
+        
         // 显示模态框
-        const modal = new bootstrap.Modal(document.getElementById('exam-modal'));
-        modal.show();
+        this.modalInstance.show();
     }
     
     updateModalContent(exam) {
@@ -855,21 +886,12 @@ class ExamPlatform {
             return;
         }
         
-        // 创建下载链接
-        const link = document.createElement('a');
-        link.href = exam.fileUrl;
-        link.download = `${exam.name}.${exam.fileFormat}`;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        
-        // 添加到页面并触发点击
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // 创建一个新的窗口打开PDF文件
+        window.open(exam.fileUrl, '_blank');
         
         // 更新下载次数（本地模拟）
         exam.downloads = (exam.downloads || 0) + 1;
-        this.showToast('开始下载试卷...');
+        this.showToast('正在打开试卷...');
     }
     
     showToast(message) {

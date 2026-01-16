@@ -5,7 +5,9 @@
     "subjects": ["数学", "英语", "物理", "化学", "生物", "语文"],
     "difficulties": ["简单", "中等", "困难", "竞赛级"],
     "sources": ["历年高考", "名校模拟", "重点中学", "教育机构"],
-    "tags": ["选择题", "填空题", "解答题", "真题", "模拟题", "专项训练"]
+    "tags": ["选择题", "填空题", "解答题", "真题", "模拟题", "专项训练"],
+    "backgroundImage": "https://your-cdn-domain.com/exams/background.jpg",
+    "backgroundOpacity": 0.08
   },
   "exams": [
     {
@@ -60,83 +62,7 @@
       "uploadDate": "2023-09-20"
     },
     {
-      "id": "physics-2023-001",
-      "name": "高中物理力学专题测试",
-      "description": "涵盖牛顿力学、能量守恒、动量定理等核心知识点，适合高二学生巩固提高",
-      "subject": "物理",
-      "difficulty": "中等",
-      "views": 6320,
-      "downloads": 4120,
-      "source": "重点中学",
-      "fileUrl": "https://your-cdn-domain.com/exams/files/physics-mechanics-test.pdf",
-      "fileSize": 2854321,
-      "fileFormat": "pdf",
-      "previewImages": [
-        "https://your-cdn-domain.com/exams/previews/physics-preview-1.jpg"
-      ],
-      "tags": ["力学", "专题测试", "物理核心", "牛顿定律"],
-      "year": 2023,
-      "grade": "高二",
-      "author": "黄冈中学",
-      "pageCount": 10,
-      "hasAnswer": true,
-      "answerIncluded": true,
-      "recommendedTime": 100,
-      "uploadDate": "2023-08-15"
-    },
-    {
-      "id": "chemistry-2023-001",
-      "name": "高中化学有机化学专题",
-      "description": "包含烃类、醇、醛、酸等有机化合物的系统讲解和练习，适合高三复习",
-      "subject": "化学",
-      "difficulty": "困难",
-      "views": 5420,
-      "downloads": 3321,
-      "source": "重点中学",
-      "fileUrl": "https://your-cdn-domain.com/exams/files/chemistry-organic.pdf",
-      "fileSize": 4123456,
-      "fileFormat": "pdf",
-      "previewImages": [
-        "https://your-cdn-domain.com/exams/previews/chemistry-preview-1.jpg"
-      ],
-      "tags": ["有机化学", "专题训练", "化学", "高三复习"],
-      "year": 2023,
-      "grade": "高三",
-      "author": "华中师大一附中",
-      "pageCount": 15,
-      "hasAnswer": true,
-      "answerIncluded": true,
-      "recommendedTime": 110,
-      "uploadDate": "2023-10-12"
-    },
-    {
-      "id": "biology-2023-001",
-      "name": "高中生物遗传学专题训练",
-      "description": "孟德尔遗传定律、基因工程、遗传病分析等专题训练题",
-      "subject": "生物",
-      "difficulty": "中等",
-      "views": 4321,
-      "downloads": 2987,
-      "source": "名校模拟",
-      "fileUrl": "https://your-cdn-domain.com/exams/files/biology-genetics.pdf",
-      "fileSize": 2987654,
-      "fileFormat": "pdf",
-      "previewImages": [
-        "https://your-cdn-domain.com/exams/previews/biology-preview-1.jpg"
-      ],
-      "tags": ["遗传学", "专题训练", "生物", "基因工程"],
-      "year": 2023,
-      "grade": "高二",
-      "author": "北京四中",
-      "pageCount": 9,
-      "hasAnswer": true,
-      "answerIncluded": true,
-      "recommendedTime": 80,
-      "uploadDate": "2023-11-05"
-      
-    },
-    {
-      "id": "chemistry-2023-001",
+      "id": "test-2023-002",
       "name": "名称测试",
       "description": "描述测试",
       "subject": "化学",
