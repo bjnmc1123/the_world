@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 试卷上传系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .admin-container { max-width: 1100px; margin: 50px auto; }
+        .card { border: none; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .card-header { background: linear-gradient(135deg, #4a6cf7 0%, #6a11cb 100%); color: white; border-radius: 15px 15px 0 0 !important; padding: 20px; }
+        .btn-submit { background: linear-gradient(135deg, #4a6cf7 0%, #6a11cb 100%); border: none; padding: 12px; font-weight: 600; }
+        .btn-submit:hover { background: linear-gradient(135deg, #3a5ce5 0%, #5a0bb5 100%); }
+        .section-title { color: #4a6cf7; font-weight: 600; border-left: 4px solid #4a6cf7; padding-left: 12px; margin: 25px 0 15px 0; }
+        .form-label.optional:after { content: " (选填)"; color: #888; font-weight: normal; }
+        .form-label.required:after { content: " *"; color: #e74c3c; }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .tag-pill { background-color: #eef2ff; color: #4a6cf7; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; display: inline-flex; align-items: center; }
+        .tag-pill .remove-tag { margin-left: 6px; cursor: pointer; color: #ff6b6b; }
+    </style>
+</head>
+<body>
+
+<div class="container admin-container">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="fas fa-cloud-upload-alt me-2"></i>发布新试卷资源</h4>
+            <div>
+                <a href="/" class="btn btn-sm btn-light me-2">查看前端主页</a>
+                <a href="/api/exams" target="_blank" class="btn btn-sm btn-outline-light">查看数据API</a>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <form id="uploadForm">
+                <h5 class="section-title">基本信息</h5>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label required">试卷名称</label>
+                        <input type="text" name="name" class="form-control" required placeholder="例如：2025届高三数学第一次模拟考试">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label required">科目</label>
+                        <select name="subject" class="form-select" required>
+                            <option value="">请选择科目</option>
+                            <option value="数学">数学</option>
+                            <option value="语文">语文</option>
+                            <option value="英语">英语</option>
+                            <option value="物理">物理</option>
+                            <option value="化学">化学</option>
+                            <option value="生物">生物</option>
+                            <option value="历史">历史</option>
+                            <option value="地理">地理</option>
+                            <option value="政治">政治</option>
+                            <option value="信息技术">信息技术</option>
+                            <option value="通用技术">通用技术</option>
+                            <option value="音乐">音乐</option>
+                            <option value="美术">美术</option>
+                            <option value="体育">体育</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label required">难度</label>
+                        <select name="difficulty" class="form-select" required>
+                            <option value="简单">简单</option>
+                            <option value="中等" selected>中等</option>
+                            <option value="困难">困难</option>
+                            <option value="竞赛">竞赛</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label required">年份</label>
+                        <input type="number" name="year" class="form-control" value="2025" min="2000" max="2030" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label required">适用年级</label>
+                        <select name="grade" class="form-select" required>
+                            <option value="高一">高一</option>
+                            <option value="高二">高二</option>
+                            <option value="高三" selected>高三</option>
+                            <option value="初中">初中</option>
+                            <option value="小学">小学</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label optional">作者/来源</label>
+                        <input type="text" name="author" class="form-control" placeholder="如：教研组、教育局">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label optional">来源类型</label>
+                        <select name="source" class="form-select">
+                            <option value="">请选择</option>
+                            <option value="历年高考">历年高考</option>
+                            <option value="模拟试题">模拟试题</option>
+                            <option value="名校试题">名校试题</option>
+                            <option value="内部上传" selected>内部上传</option>
+                            <option value="专题训练">专题训练</option>
+                            <option value="单元测试">单元测试</option>
+                            <option value="期中期末">期中期末</option>
+                            <option value="竞赛试题">竞赛试题</option>
+                            <option value="同步练习">同步练习</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label required">试卷描述</label>
+                        <textarea name="description" class="form-control" rows="3" required placeholder="简述该试卷的特点、涵盖知识点、适用场景等..."></textarea>
+                    </div>
+
+                    <h5 class="section-title">试卷内容</h5>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label text-primary fw-bold required">试卷文件 (PDF/Docx)</label>
+                        <input type="file" name="examFile" class="form-control" accept=".pdf,.doc,.docx" required>
+                        <small class="form-text text-muted">支持PDF和Word文档，最大50MB</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-primary fw-bold optional">预览图 (可多选)</label>
+                        <input type="file" name="previews" class="form-control" multiple accept=".jpg,.jpeg,.png,.gif">
+                        <small class="form-text text-muted">建议尺寸：800×600，支持JPG/PNG格式</small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" name="hasAnswer" value="true" id="check1" checked>
+                            <label class="form-check-label" for="check1">包含答案</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" name="answerIncluded" value="true" id="check2" checked>
+                            <label class="form-check-label" for="check2">答案在文件末尾</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" name="isOriginal" value="true" id="check3">
+                            <label class="form-check-label" for="check3">原创试题</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label optional">页数</label>
+                        <input type="number" name="pageCount" class="form-control" min="1" max="100" placeholder="自动识别">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label optional">建议时间(分钟)</label>
+                        <input type="number" name="recommendedTime" class="form-control" min="10" max="300" value="60">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label optional">题目数量</label>
+                        <input type="number" name="questionCount" class="form-control" min="1" max="200" placeholder="如：25">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label optional">总分</label>
+                        <input type="number" name="totalScore" class="form-control" min="0" max="200" placeholder="如：150">
+                    </div>
+
+                    <h5 class="section-title">标签与分类</h5>
+                    
+                    <div class="col-12">
+                        <label class="form-label optional">标签（回车添加）</label>
+                        <input type="text" id="tagInput" class="form-control" placeholder="输入标签后按回车添加">
+                        <div id="tagsContainer" class="tags-container"></div>
+                        <input type="hidden" name="tags" id="tagsHidden">
+                        <small class="form-text text-muted">常用标签：高考真题、模拟试题、专题训练、必修一、函数、几何、阅读理解</small>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label optional">知识点</label>
+                        <textarea name="knowledgePoints" class="form-control" rows="2" placeholder="每行一个知识点，如：&#10;一次函数&#10;二次函数&#10;三角函数"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label optional">适用地区</label>
+                        <select name="region" class="form-select">
+                            <option value="">全国通用</option>
+                            <option value="全国卷">全国卷</option>
+                            <option value="新课标">新课标</option>
+                            <option value="北京">北京</option>
+                            <option value="上海">上海</option>
+                            <option value="江苏">江苏</option>
+                            <option value="浙江">浙江</option>
+                            <option value="广东">广东</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label optional">备注说明</label>
+                        <textarea name="remarks" class="form-control" rows="2" placeholder="其他需要说明的事项"></textarea>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button type="submit" id="submitBtn" class="btn btn-primary btn-submit w-100 py-3">
+                            <i class="fas fa-paper-plane me-2"></i>确认发布试卷资源
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div id="msg" class="mt-3"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 标签管理
+    let tags = [];
+    const tagInput = document.getElementById('tagInput');
+    const tagsContainer = document.getElementById('tagsContainer');
+    const tagsHidden = document.getElementById('tagsHidden');
+    
+    tagInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const tag = tagInput.value.trim();
+            if (tag && !tags.includes(tag)) {
+                tags.push(tag);
+                updateTagsDisplay();
+                tagInput.value = '';
+            }
+        }
+    });
+    
+    function updateTagsDisplay() {
+        tagsContainer.innerHTML = '';
+        tags.forEach((tag, index) => {
+            const tagEl = document.createElement('div');
+            tagEl.className = 'tag-pill';
+            tagEl.innerHTML = `${tag} <span class="remove-tag" onclick="removeTag(${index})">×</span>`;
+            tagsContainer.appendChild(tagEl);
+        });
+        tagsHidden.value = tags.join(',');
+    }
+    
+    window.removeTag = (index) => {
+        tags.splice(index, 1);
+        updateTagsDisplay();
+    };
+    
+    // 表单提交
+    document.getElementById('uploadForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('msg');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>正在上传...';
+        msg.innerHTML = '<div class="alert alert-info"><i class="fas fa-spinner fa-spin me-2"></i>正在处理并上传文件，请稍候...</div>';
+
+        const formData = new FormData(e.target);
+        
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                msg.innerHTML = `<div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>✅ ${result.message}
+                    <div class="mt-2">
+                        <strong>试卷ID:</strong> ${result.exam.id}<br>
+                        <strong>文件大小:</strong> ${(result.exam.fileSize / 1024 / 1024).toFixed(2)} MB<br>
+                        <strong>保存路径:</strong> ${result.exam.fileUrl}
+                    </div>
+                </div>`;
+                e.target.reset();
+                tags = [];
+                updateTagsDisplay();
+            } else {
+                msg.innerHTML = `<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>❌ 失败: ${result.message}</div>`;
+            }
+        } catch (err) {
+            msg.innerHTML = `<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>❌ 网络连接错误，请检查后端服务: ${err.message}</div>`;
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>确认发布试卷资源';
+        }
+    };
+    
+    // 自动填充示例数据（开发用）
+    function fillSampleData() {
+        const form = document.getElementById('uploadForm');
+        form.name.value = '2025年高考数学模拟试题（全国卷）';
+        form.description.value = '本试卷包含函数、几何、概率统计等综合题目，适合高三学生高考前模拟训练';
+        form.author.value = '教育部考试中心';
+        form.source.value = '模拟试题';
+        form.pageCount.value = 12;
+        form.recommendedTime.value = 120;
+        form.questionCount.value = 25;
+        form.totalScore.value = 150;
+        form.region.value = '全国卷';
+        form.remarks.value = '本试卷为模拟试题，仅供练习使用';
+        
+        // 添加示例标签
+        tags = ['高考模拟', '函数', '几何', '概率统计', '综合卷', '高三'];
+        updateTagsDisplay();
+        
+        alert('已填充示例数据，请继续填写其他字段并选择文件');
+    }
+    
+    // 开发模式下添加示例数据按钮 
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn-sm btn-outline-secondary mt-2';
+        btn.innerHTML = '<i class="fas fa-magic me-1"></i>填充示例数据';
+        btn.onclick = fillSampleData;
+        document.querySelector('.card-body').insertBefore(btn, document.getElementById('msg'));
+    }
+</script>
+</body>
+</html>
